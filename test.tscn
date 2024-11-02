@@ -1,3 +1,67 @@
-[gd_scene format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=6 format=3 uid="uid://ssk7yox0b3d8"]
+
+[ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
+[ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lidbc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gppt0"]
+albedo_texture = ExtResource("1_abspe")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ttqqm"]
 
 [node name="Test" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630695, 0)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_lidbc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
+material = SubResource("StandardMaterial3D_gppt0")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_lidbc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -1, 0)
+material = SubResource("StandardMaterial3D_gppt0")
+
+[node name="Pivot" type="Node3D" parent="."]
+script = ExtResource("2_gx15l")
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 10, 5)
+
+[node name="Control" type="Control" parent="Pivot"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 127.0
+offset_bottom = 175.0
+
+[node name="CheckBox" type="CheckBox" parent="Pivot/Control"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 39.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_ttqqm")
+text = "Perspective Movement"
+
+[node name="CheckBox2" type="CheckBox" parent="Pivot/Control"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 33.0
+offset_right = 272.0
+offset_bottom = 64.0
+button_group = SubResource("ButtonGroup_ttqqm")
+text = "Isometric Movement"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.508681, 0.860955, 0, -0.860955, 0.508681, 0, 18.2237, 13.5717)
