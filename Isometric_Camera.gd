@@ -35,3 +35,9 @@ func _process(delta):
 			translate(Vector3(SCROLL_SPEED*delta,0,SCROLL_SPEED*delta))
 		else:
 			translate(Vector3(0,0,SCROLL_SPEED * delta))
+			
+	if Input.is_key_pressed(KEY_CTRL):
+		translate(Vector3(0,-SCROLL_SPEED * delta,0))
+		
+	if Input.is_key_pressed(KEY_SHIFT):
+		translate(Vector3(0,SCROLL_SPEED * delta,0))

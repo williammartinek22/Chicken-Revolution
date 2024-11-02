@@ -1,42 +1,62 @@
-[gd_scene load_steps=6 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=11 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
+[ext_resource type="Script" path="res://CharacterController.gd" id="3_sgdm3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pve6w"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlo0o"]
+albedo_color = Color(0.105882, 0.341176, 0, 1)
+albedo_texture = ExtResource("1_abspe")
+albedo_texture_msdf = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lidbc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gppt0"]
 albedo_texture = ExtResource("1_abspe")
+texture_filter = 0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ttqqm"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rqxx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgcn2"]
+albedo_color = Color(1, 0.329412, 0.992157, 1)
+albedo_texture = ExtResource("1_abspe")
+albedo_texture_msdf = true
+
 [node name="Test" type="Node3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630695, 0)
-gravity_scale = 0.0
+[node name="Floor" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_pve6w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, -1, 0)
+material = SubResource("StandardMaterial3D_hlo0o")
+
+[node name="Cube" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
 shape = SubResource("BoxShape3D_lidbc")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
-material = SubResource("StandardMaterial3D_gppt0")
-
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
-gravity_scale = 0.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-shape = SubResource("BoxShape3D_lidbc")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -1, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Cube"]
 material = SubResource("StandardMaterial3D_gppt0")
 
 [node name="Pivot" type="Node3D" parent="."]
 script = ExtResource("2_gx15l")
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 10, 5)
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -10, 10, 10)
 
 [node name="Control" type="Control" parent="Pivot"]
 layout_mode = 3
@@ -65,3 +85,13 @@ text = "Isometric Movement"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508681, 0.860955, 0, -0.860955, 0.508681, 0, 18.2237, 13.5717)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_sgdm3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_rqxx4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CharacterBody3D"]
+material = SubResource("StandardMaterial3D_mgcn2")
