@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=16 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
 [ext_resource type="Script" path="res://CharacterController.gd" id="3_sgdm3"]
+[ext_resource type="PackedScene" uid="uid://bnbo0qjw4dg5u" path="res://game/player/chicken_1.gltf" id="4_s0qe2"]
+[ext_resource type="Script" path="res://FPS_counter.gd" id="5_ewcrj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pve6w"]
 size = Vector3(15, 1, 15)
@@ -14,11 +16,14 @@ albedo_texture_msdf = true
 emission_energy_multiplier = 0.0
 texture_filter = 0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lidbc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4vs7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gppt0"]
 albedo_texture = ExtResource("1_abspe")
 texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbbr4"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ttqqm"]
 
@@ -28,6 +33,27 @@ texture_filter = 0
 albedo_color = Color(1, 0.329412, 0.992157, 1)
 albedo_texture = ExtResource("1_abspe")
 albedo_texture_msdf = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fumi6"]
+emission_shape_scale = Vector3(1, 0.1, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.5
+angular_velocity_min = 82.76
+angular_velocity_max = 82.76
+radial_velocity_min = 1.99998
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.2
+scale_max = 0.2
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4mqb6"]
 
 [node name="Test" type="Node3D"]
 
@@ -44,21 +70,32 @@ transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, -1, 0)
 material = SubResource("StandardMaterial3D_hlo0o")
 
 [node name="Cube" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
-shape = SubResource("BoxShape3D_lidbc")
+shape = SubResource("BoxShape3D_p4vs7")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Cube"]
+material = SubResource("StandardMaterial3D_gppt0")
+
+[node name="Cube2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube2"]
+shape = SubResource("BoxShape3D_bbbr4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Cube2"]
+size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_gppt0")
 
 [node name="Pivot" type="Node3D" parent="."]
 script = ExtResource("2_gx15l")
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -10, 10, 10)
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
 
 [node name="Control" type="Control" parent="Pivot"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 127.0
@@ -86,12 +123,47 @@ text = "Isometric Movement"
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508681, 0.860955, 0, -0.860955, 0.508681, 0, 18.2237, 13.5717)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("3_sgdm3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_rqxx4")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CharacterBody3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player"]
 material = SubResource("StandardMaterial3D_mgcn2")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
+current = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.97, 0)
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fumi6")
+draw_pass_1 = SubResource("BoxMesh_4mqb6")
+
+[node name="chicken_1" parent="." instance=ExtResource("4_s0qe2")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -2, -0.5, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 86.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "0 FPS"
+script = ExtResource("5_ewcrj")

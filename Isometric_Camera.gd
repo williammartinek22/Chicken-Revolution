@@ -10,6 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	return
 	perspectiveMovement = $Control/CheckBox.button_pressed
 	
 	if Input.is_key_pressed(KEY_W):
