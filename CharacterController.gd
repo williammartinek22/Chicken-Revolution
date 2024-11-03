@@ -7,9 +7,11 @@ const JUMP_VELOCITY = 4.5
 var default_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = default_gravity
 @export var perspectiveMovement = true
+@export var jumpBufferVal = 0.4
 var canJump = true
 var jumpBuffer = false
 var landing = false
+var lastDirection = Vector3.FORWARD
 
 func _physics_process(delta):
 	# pull player to the ground, use jump buffer, and trigger dust effect on landing
@@ -18,7 +20,7 @@ func _physics_process(delta):
 		landing = true
 		if canJump and !jumpBuffer:
 			jumpBuffer = true
-			await get_tree().create_timer(.4).timeout
+			await get_tree().create_timer(jumpBufferVal).timeout
 			jumpBuffer = false
 			canJump = false
 	else:
@@ -38,6 +40,7 @@ func _physics_process(delta):
 	else:
 		gravity = default_gravity
 
+	#Handle player input
 	var input_dir = Vector3.ZERO
 	
 	if Input.is_key_pressed(KEY_W):
@@ -64,8 +67,9 @@ func _physics_process(delta):
 		else:
 			input_dir += (Vector3(0,0,SPEED * delta))
 			
-			
 	var direction = (transform.basis * input_dir).normalized()
+	if direction != Vector3.ZERO:
+		lastDirection = direction
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -74,3 +78,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	#Look in the direction it is moving
+	if has_node("PlayerOrigin"):
+		$PlayerOrigin.rotation.y = lerp_angle($PlayerOrigin.rotation.y, atan2(-lastDirection.x, -lastDirection.z), delta * 20)
