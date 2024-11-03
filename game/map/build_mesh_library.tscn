@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://csxyapabsfarn"]
+
+[ext_resource type="PackedScene" uid="uid://bbnh84qd8klww" path="res://game/grass/grass_0.gltf" id="1_baps7"]
+[ext_resource type="PackedScene" uid="uid://c22k47sttfxde" path="res://game/grass/grass_1.gltf" id="2_y2at3"]
+
+[node name="BuildMeshLibrary" type="Node3D"]
+
+[node name="grass_0" parent="." instance=ExtResource("1_baps7")]
+
+[node name="grass_1" parent="." instance=ExtResource("2_y2at3")]
