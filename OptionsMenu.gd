@@ -27,7 +27,7 @@ func setup_keybinds():
 		"ui_accept": "Jump"
 	}
 	
-	# Définir les touches par défaut si elles ne sont pas déjà configurées
+	# Set default keys if not already configured
 	var default_keys = {
 		"ui_up": KEY_W,
 		"ui_down": KEY_S,
@@ -49,7 +49,7 @@ func setup_keybinds():
 		if events.size() > 0:
 			button.text = events[0].as_text()
 		else:
-			# Si aucune touche n'est configurée, utiliser la touche par défaut
+			# If no key is configured, use the default key
 			var event = InputEventKey.new()
 			event.keycode = default_keys[action]
 			event.physical_keycode = default_keys[action]
@@ -72,14 +72,14 @@ func _on_keybind_button_pressed(action: String, button: Button):
 
 func _input(event):
 	if is_remapping and event is InputEventKey:
-		if event.pressed: # Ne réagir qu'à l'appui de la touche, pas au relâchement
+		if event.pressed: # Only react to key press, not release
 			var current_events = InputMap.action_get_events(action_to_remap)
 			
-			# Vérifier si la touche est déjà utilisée pour cette action
+			# Check if the key is already used for this action
 			if current_events.size() > 0 and current_events[0].keycode == event.keycode:
 				action_buttons[action_to_remap].text = event.as_text()
 			else:
-				# Vérifier si la touche est déjà utilisée par une autre action
+				# Check if the key is already used by another action
 				var is_key_used = false
 				for action in action_buttons.keys():
 					if action != action_to_remap:
@@ -94,7 +94,7 @@ func _input(event):
 					action_buttons[action_to_remap].text = event.as_text()
 					save_settings()
 				else:
-					# Si la touche est déjà utilisée, restaurer l'ancienne configuration
+					# If the key is already used, restore the old configuration
 					if current_events.size() > 0:
 						action_buttons[action_to_remap].text = current_events[0].as_text()
 			
