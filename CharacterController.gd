@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -13,7 +12,14 @@ var jumpBuffer = false
 var landing = false
 var lastDirection = Vector3.FORWARD
 
+
+func _ready():
+	pass
+
 func _physics_process(delta):
+	if get_tree().paused:
+		return
+		
 	# pull player to the ground, use jump buffer, and trigger dust effect on landing
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -31,54 +37,55 @@ func _physics_process(delta):
 		jumpBuffer = false
 		
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and canJump:
+	if Input.is_action_pressed("ui_accept") and canJump:
 		canJump = false
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_pressed("ui_accept") and !is_on_floor() and velocity.y < 0:
-		gravity = default_gravity/5
+		gravity = default_gravity / 5
 	else:
 		gravity = default_gravity
 
-	#Handle player input
+	# Handle player input
 	var input_dir = Vector3.ZERO
 	
-	if Input.is_key_pressed(KEY_W):
+	if Input.is_action_pressed("ui_up"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(SPEED * delta,0,-SPEED * delta))
+			input_dir += (Vector3(SPEED * delta, 0, -SPEED * delta))
 		else:
-			input_dir += (Vector3(SPEED * delta,0,0))
+			input_dir += (Vector3(SPEED * delta, 0, 0))
 	
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_action_pressed("ui_down"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(-SPEED * delta,0,SPEED * delta))
+			input_dir += (Vector3(-SPEED * delta, 0, SPEED * delta))
 		else:
-			input_dir += (Vector3(-SPEED * delta,0,0))
+			input_dir += (Vector3(-SPEED * delta, 0, 0))
 		
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_action_pressed("ui_left"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(-SPEED*delta,0,-SPEED*delta))
+			input_dir += (Vector3(-SPEED * delta, 0, -SPEED * delta))
 		else:
-			input_dir += (Vector3(0,0,-SPEED * delta))
+			input_dir += (Vector3(0, 0, -SPEED * delta))
 		
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_action_pressed("ui_right"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(SPEED*delta,0,SPEED*delta))
+			input_dir += (Vector3(SPEED * delta, 0, SPEED * delta))
 		else:
-			input_dir += (Vector3(0,0,SPEED * delta))
+			input_dir += (Vector3(0, 0, SPEED * delta))
+		
 			
 	var direction = (transform.basis * input_dir).normalized()
 	if direction != Vector3.ZERO:
 		lastDirection = direction
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 	
-	#Look in the direction it is moving
+	# Look in the direction it is moving
 	if has_node("PlayerOrigin"):
 		$PlayerOrigin.rotation.y = lerp_angle($PlayerOrigin.rotation.y, atan2(-lastDirection.x, -lastDirection.z), delta * 20)
