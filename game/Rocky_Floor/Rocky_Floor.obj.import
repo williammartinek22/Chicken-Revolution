@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://hxg8kaukypv1"
+path="res://.godot/imported/Rocky_Floor.obj-f386fdef154673eea4f9b223b3cebefa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rocky_Floor.obj-f386fdef154673eea4f9b223b3cebefa.mesh"]
+
+source_file="res://game/Rocky_Floor/Rocky_Floor.obj"
+dest_files=["res://.godot/imported/Rocky_Floor.obj-f386fdef154673eea4f9b223b3cebefa.mesh", "res://.godot/imported/Rocky_Floor.obj-f386fdef154673eea4f9b223b3cebefa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

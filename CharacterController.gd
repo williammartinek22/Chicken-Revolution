@@ -85,7 +85,10 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
 	# Look in the direction it is moving
 	if has_node("PlayerOrigin"):
 		$PlayerOrigin.rotation.y = lerp_angle($PlayerOrigin.rotation.y, atan2(-lastDirection.x, -lastDirection.z), delta * 20)
+
+func obtain_egg():
+	print("Egg obtained!")
