@@ -56,3 +56,4 @@ pause={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(6.83457e-06, 0.590382, 0.789582, 1)
