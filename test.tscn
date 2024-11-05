@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=24 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
 [ext_resource type="Script" path="res://CharacterController.gd" id="3_sgdm3"]
 [ext_resource type="PackedScene" uid="uid://bnbo0qjw4dg5u" path="res://game/player/chicken_1.gltf" id="4_s0qe2"]
 [ext_resource type="Script" path="res://FPS_counter.gd" id="5_ewcrj"]
+[ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="6_du12h"]
+[ext_resource type="Script" path="res://egg.gd" id="7_jih3g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pve6w"]
 size = Vector3(15, 1, 15)
@@ -37,14 +39,8 @@ size = Vector3(2, 2, 2)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ttqqm"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rqxx4"]
-radius = 0.001
-height = 0.002
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgcn2"]
-albedo_color = Color(1, 0.329412, 0.992157, 1)
-albedo_texture = ExtResource("1_abspe")
-albedo_texture_msdf = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
+size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fumi6"]
 emission_shape_offset = Vector3(0, -0.2, 0)
@@ -68,8 +64,55 @@ scale_over_velocity_max = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4mqb6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
-size = Vector3(0.8, 0.8, 0.8)
+[sub_resource type="SphereShape3D" id="SphereShape3D_syu7g"]
+
+[sub_resource type="Animation" id="Animation_6kd0e"]
+resource_name = "egg_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.387679, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0105691, 1, 0, 0, 0, 0.510569, 1, 0, 0.387679, 0, 0.977236, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_34oew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_unkjs"]
+_data = {
+"RESET": SubResource("Animation_34oew"),
+"egg_animation": SubResource("Animation_6kd0e")
+}
+
+[sub_resource type="Environment" id="Environment_tkhwu"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Test" type="Node3D"]
 
@@ -127,10 +170,12 @@ size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_gppt0")
 
 [node name="Pivot" type="Node3D" parent="."]
+visible = false
 script = ExtResource("2_gx15l")
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
+visible = false
 
 [node name="Control" type="Control" parent="Pivot"]
 visible = false
@@ -162,19 +207,18 @@ text = "Isometric Movement"
 transform = Transform3D(1, 0, 0, 0, 0.508681, 0.860955, 0, -0.860955, 0.508681, 0, 18.2237, 13.5717)
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 1)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
 script = ExtResource("3_sgdm3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_rqxx4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_nhxi0")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Player"]
-material = SubResource("StandardMaterial3D_mgcn2")
+[node name="PlayerOrigin" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
-current = true
+[node name="chicken_1" parent="Player/PlayerOrigin" instance=ExtResource("4_s0qe2")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.5, 0.12263, -0.5)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.97, 0)
@@ -187,32 +231,7 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_fumi6")
 draw_pass_1 = SubResource("BoxMesh_4mqb6")
 
-[node name="Player2" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
-script = ExtResource("3_sgdm3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_nhxi0")
-
-[node name="PlayerOrigin" type="Node3D" parent="Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="chicken_1" parent="Player2/PlayerOrigin" instance=ExtResource("4_s0qe2")]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.5, 0, -0.5)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player2"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.97, 0)
-emitting = false
-amount = 16
-lifetime = 0.8
-one_shot = true
-explosiveness = 0.7
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_fumi6")
-draw_pass_1 = SubResource("BoxMesh_4mqb6")
-
-[node name="Camera3D" type="Camera3D" parent="Player2"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
 current = true
 
@@ -226,9 +245,37 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = 9.0
 offset_top = 7.0
-offset_right = 86.0
+offset_right = 393.0
 offset_bottom = 47.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "0 FPS"
 script = ExtResource("5_ewcrj")
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_du12h")]
+
+[node name="Egg" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34846, 0.129496, 2.73681)
+script = ExtResource("7_jih3g")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Egg"]
+transform = Transform3D(1, 0, 0, 0, 1.17932, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Egg"]
+shape = SubResource("SphereShape3D_syu7g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Egg"]
+omni_range = 2.838
+omni_attenuation = 8.048
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Egg"]
+libraries = {
+"": SubResource("AnimationLibrary_unkjs")
+}
+autoplay = "egg_animation"
+speed_scale = 0.325
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tkhwu")
+
+[connection signal="body_entered" from="Egg" to="Egg" method="_on_body_entered"]

@@ -4,7 +4,7 @@ var is_paused = false
 
 func _ready():
 	print("PauseMenu ready - Starting setup")
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	#process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	$Control.hide()
 	is_paused = false
 	print("PauseMenu setup complete")
