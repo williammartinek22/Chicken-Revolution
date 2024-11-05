@@ -56,4 +56,5 @@ pause={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_s3tc_bptc=true
 environment/defaults/default_clear_color=Color(6.83457e-06, 0.590382, 0.789582, 1)

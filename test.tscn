@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=26 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
 [ext_resource type="Script" path="res://CharacterController.gd" id="3_sgdm3"]
-[ext_resource type="PackedScene" uid="uid://bnbo0qjw4dg5u" path="res://game/player/chicken_1.gltf" id="4_s0qe2"]
 [ext_resource type="Script" path="res://FPS_counter.gd" id="5_ewcrj"]
 [ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="5_r4yen"]
 [ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="6_du12h"]
@@ -61,6 +60,21 @@ scale_over_velocity_max = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_syu7g"]
 
+[sub_resource type="Animation" id="Animation_34oew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_6kd0e"]
 resource_name = "egg_animation"
 loop_mode = 1
@@ -83,21 +97,6 @@ tracks/1/path = NodePath("OmniLight3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0.0105691, 1, 0, 0, 0, 0.510569, 1, 0, 0.387679, 0, 0.977236, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_34oew"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CSGSphere3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_unkjs"]
 _data = {
@@ -215,10 +214,6 @@ shape = SubResource("BoxShape3D_nhxi0")
 
 [node name="PlayerOrigin" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="chicken_1" parent="Player/PlayerOrigin" instance=ExtResource("4_s0qe2")]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.5, 0.12263, -0.5)
-visible = false
 
 [node name="Chicken" type="MeshInstance3D" parent="Player/PlayerOrigin"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.102926, 0)
