@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch1enmsgdk86"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_fwya8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljwbd"]
+height = 1.74533
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkp30"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1x37s"]
+height = 1.04711
+radius = 4.08942
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_fwya8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000441909, 0.813391, -0.000435948)
+shape = SubResource("CapsuleShape3D_ljwbd")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.806583, 0, 0, 0, 1, -0.000441909, 0.813391, -0.000435948)
+material = SubResource("StandardMaterial3D_nkp30")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515788, 0)
+shape = SubResource("CylinderShape3D_1x37s")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
