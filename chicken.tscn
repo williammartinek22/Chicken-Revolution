@@ -10,7 +10,7 @@ size = Vector3(0.8, 0.8, 0.8)
 height = 1.04711
 radius = 3.33105
 
-[node name="chicken" type="CharacterBody3D"]
+[node name="chicken" type="CharacterBody3D" groups=["NPC"]]
 script = ExtResource("1_gym23")
 
 [node name="Node3D" type="Node3D" parent="."]

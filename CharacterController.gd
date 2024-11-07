@@ -7,10 +7,12 @@ var default_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = default_gravity
 @export var perspectiveMovement = true
 @export var jumpBufferVal = 0.4
+@export var eggProjectile = load("res://egg_projectile.tscn")
 var canJump = true
 var jumpBuffer = false
 var landing = false
 var lastDirection = Vector3.FORWARD
+var canShoot = true
 
 
 func _ready():
@@ -73,6 +75,8 @@ func _physics_process(delta):
 		else:
 			input_dir += (Vector3(0, 0, SPEED * delta))
 		
+	if Input.is_action_just_released("shoot") and canShoot:
+		shoot()
 			
 	var direction = (transform.basis * input_dir).normalized()
 	if direction != Vector3.ZERO:
@@ -92,3 +96,16 @@ func _physics_process(delta):
 
 func obtain_egg():
 	print("Egg obtained!")
+
+func _notification(item):
+	if item == NOTIFICATION_PREDELETE and get_tree():
+		$Camera3D.reparent(get_tree().root)
+		
+func shoot():
+	var egg_inst = eggProjectile.instantiate()
+	get_tree().root.add_child(egg_inst)
+	egg_inst.position = position
+	egg_inst.rotation.y =  $PlayerOrigin.rotation.y
+	canShoot = false
+	await get_tree().create_timer(0.5).timeout
+	canShoot = true

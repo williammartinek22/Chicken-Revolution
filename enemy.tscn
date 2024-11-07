@@ -13,7 +13,7 @@ albedo_color = Color(1, 0, 0, 1)
 height = 1.04711
 radius = 4.08942
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_fwya8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

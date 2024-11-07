@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://qvm166at85df"]
+
+[ext_resource type="Script" path="res://CharacterController.gd" id="1_yy2pr"]
+[ext_resource type="PackedScene" uid="uid://0qvk7an71ipc" path="res://egg_projectile.tscn" id="2_5g3yd"]
+[ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="2_lyhkw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fumi6"]
+emission_shape_offset = Vector3(0, -0.2, 0)
+emission_shape_scale = Vector3(0.5, 0.1, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.5
+angular_velocity_min = 82.76
+angular_velocity_max = 82.76
+radial_velocity_min = 1.99998
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.2
+scale_max = 0.2
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4mqb6"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.802631, 0)
+script = ExtResource("1_yy2pr")
+eggProjectile = ExtResource("2_5g3yd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_nhxi0")
+
+[node name="PlayerOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Chicken" type="MeshInstance3D" parent="PlayerOrigin"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.102926, 0)
+mesh = ExtResource("2_lyhkw")
+skeleton = NodePath("../../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.97, 0)
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fumi6")
+draw_pass_1 = SubResource("BoxMesh_4mqb6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
+current = true

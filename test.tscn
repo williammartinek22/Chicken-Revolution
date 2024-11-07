@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=28 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://Isometric_Camera.gd" id="2_gx15l"]
-[ext_resource type="Script" path="res://CharacterController.gd" id="3_sgdm3"]
+[ext_resource type="PackedScene" uid="uid://qvm166at85df" path="res://player.tscn" id="3_mhgrm"]
 [ext_resource type="Script" path="res://FPS_counter.gd" id="5_ewcrj"]
-[ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="5_r4yen"]
 [ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="6_du12h"]
 [ext_resource type="Script" path="res://egg.gd" id="7_jih3g"]
 [ext_resource type="Texture2D" uid="uid://bjvitn83s2e5" path="res://game/Wood Box/Wood Box.png" id="9_6lep4"]
@@ -14,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bh8stan1cr1w7" path="res://game/Trees/Tree01/Tree 01.obj" id="12_3ud8o"]
 [ext_resource type="PackedScene" uid="uid://c4478ilc23gnh" path="res://chicken.tscn" id="12_k6m5f"]
 [ext_resource type="MeshLibrary" uid="uid://brd8t7ayvqcrx" path="res://tiles.tres" id="13_onptt"]
+[ext_resource type="PackedScene" uid="uid://b7gaj7rarnyas" path="res://coop.tscn" id="14_0grpo"]
 
 [sub_resource type="Environment" id="Environment_tkhwu"]
 background_mode = 1
@@ -39,31 +39,6 @@ albedo_texture = ExtResource("1_abspe")
 texture_filter = 0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ttqqm"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
-size = Vector3(0.8, 0.8, 0.8)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fumi6"]
-emission_shape_offset = Vector3(0, -0.2, 0)
-emission_shape_scale = Vector3(0.5, 0.1, 0.5)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.5
-angular_velocity_min = 82.76
-angular_velocity_max = 82.76
-radial_velocity_min = 1.99998
-radial_velocity_max = 1.99998
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = -2.23517e-06
-scale_min = 0.2
-scale_max = 0.2
-scale_over_velocity_min = 1.0
-scale_over_velocity_max = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_4mqb6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_syu7g"]
 
@@ -206,36 +181,7 @@ offset_bottom = 64.0
 button_group = SubResource("ButtonGroup_ttqqm")
 text = "Isometric Movement"
 
-[node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.802631, 0)
-script = ExtResource("3_sgdm3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_nhxi0")
-
-[node name="PlayerOrigin" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="Chicken" type="MeshInstance3D" parent="Player/PlayerOrigin"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.102926, 0)
-mesh = ExtResource("5_r4yen")
-skeleton = NodePath("../../..")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.97, 0)
-emitting = false
-amount = 16
-lifetime = 0.8
-one_shot = true
-explosiveness = 0.7
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_fumi6")
-draw_pass_1 = SubResource("BoxMesh_4mqb6")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
-current = true
+[node name="Player" parent="." instance=ExtResource("3_mhgrm")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -327,7 +273,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.10135, 0.399599, 0.00
 shape = SubResource("BoxShape3D_8fdmu")
 
 [node name="WoodBox4" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 6.36589, 1.50475, 2.56489)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 5.89004, 1.50475, 2.56489)
 material_override = SubResource("StandardMaterial3D_bc36g")
 mesh = ExtResource("10_1k5lt")
 skeleton = NodePath("../..")
@@ -550,10 +496,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0909, 0.696845, -3.63206)
 transform = Transform3D(-0.719182, 0, -0.694822, 0, 1, 0, 0.694822, 0, -0.719182, 7.08646, 0.696845, -3.42394)
 
 [node name="chicken" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2746, 0.690526, 2.49023)
+transform = Transform3D(-0.0207679, 0, -0.999784, 0, 1, 0, 0.999784, 0, -0.0207679, 25.3477, 0.690526, 1.98478)
 
 [node name="Chicken" parent="chicken/Node3D" index="0"]
-transform = Transform3D(-0.288898, 0, 0.95736, 0, 1, 0, -0.95736, 0, -0.288898, -1.68445, -0.394936, -0.339552)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.395, 0)
 
 [node name="chicken2" parent="." instance=ExtResource("12_k6m5f")]
 transform = Transform3D(0.0226001, 0, 0.999745, 0, 1, 0, -0.999745, 0, 0.0226001, 31.8532, 0.690526, -1.84766)
@@ -594,6 +540,9 @@ mesh = ExtResource("12_3ud8o")
 [node name="Tree07" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.895036, 0, 0.445995, 0, 1, 0, -0.445995, 0, 0.895036, -3.19512, 0.68961, -8.19176)
 mesh = ExtResource("12_3ud8o")
+
+[node name="Coop" parent="." instance=ExtResource("14_0grpo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0.641433, -11)
 
 [connection signal="body_entered" from="Egg" to="Egg" method="_on_body_entered"]
 
