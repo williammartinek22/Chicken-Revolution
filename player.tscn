@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://qvm166at85df"]
+[gd_scene load_steps=9 format=3 uid="uid://qvm166at85df"]
 
 [ext_resource type="Script" path="res://CharacterController.gd" id="1_yy2pr"]
 [ext_resource type="PackedScene" uid="uid://0qvk7an71ipc" path="res://egg_projectile.tscn" id="2_5g3yd"]
 [ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="2_lyhkw"]
+[ext_resource type="AudioStream" uid="uid://cc42k2dbqxmfh" path="res://SFX/bloop.mp3" id="4_q32y2"]
+[ext_resource type="AudioStream" uid="uid://m6s537y75q0g" path="res://SFX/flap.mp3" id="5_o3g71"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -60,3 +62,10 @@ draw_pass_1 = SubResource("BoxMesh_4mqb6")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
 current = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q32y2")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_o3g71")
+volume_db = 5.0

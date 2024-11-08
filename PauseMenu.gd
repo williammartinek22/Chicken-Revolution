@@ -31,7 +31,7 @@ func resume():
 	is_paused = false
 	$Control.hide()
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_resume_button_pressed():
 	resume()

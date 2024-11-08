@@ -41,6 +41,7 @@ func _physics_process(delta):
 	if collide:
 		var collider = collide.get_collider()
 		if collider.is_in_group("Player"):
+			$AudioStreamPlayer2.play()
 			collider.queue_free()
 	
 func updateTargetLocation(targetVar):
@@ -49,6 +50,7 @@ func updateTargetLocation(targetVar):
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("Player"):
+		$AudioStreamPlayer.play()
 		targetCharacter = body
 		updateTargetLocation(targetCharacter.position)
 

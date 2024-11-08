@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4478ilc23gnh"]
+[gd_scene load_steps=9 format=3 uid="uid://c4478ilc23gnh"]
 
 [ext_resource type="Script" path="res://chicken.gd" id="1_gym23"]
+[ext_resource type="AudioStream" uid="uid://dfqbykigfhn0v" path="res://SFX/cluck1.mp3" id="2_ah07i"]
 [ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="2_w8g6j"]
+[ext_resource type="AudioStream" uid="uid://bnvptgx3dls4g" path="res://SFX/cluck2.mp3" id="3_b1m87"]
+[ext_resource type="AudioStream" uid="uid://u8f8uqdb3nxm" path="res://SFX/cluck3.mp3" id="4_6ty3h"]
+[ext_resource type="AudioStream" uid="uid://ciujpqrhhm1gr" path="res://SFX/cluck4.mp3" id="5_8qi40"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1sr7s"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -12,6 +16,7 @@ radius = 3.33105
 
 [node name="chicken" type="CharacterBody3D" groups=["NPC"]]
 script = ExtResource("1_gym23")
+clucks = Array[AudioStreamMP3]([ExtResource("2_ah07i"), ExtResource("3_b1m87"), ExtResource("4_6ty3h"), ExtResource("5_8qi40")])
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411847, 0)
@@ -32,5 +37,7 @@ shape = SubResource("BoxShape3D_1sr7s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515788, 0)
 shape = SubResource("CylinderShape3D_w35vr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

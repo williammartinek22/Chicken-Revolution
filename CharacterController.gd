@@ -19,8 +19,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if get_tree().paused:
-		return
+	#if get_tree().paused:
+		#return
 		
 	# pull player to the ground, use jump buffer, and trigger dust effect on landing
 	if not is_on_floor():
@@ -44,6 +44,8 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_pressed("ui_accept") and !is_on_floor() and velocity.y < 0:
+		if !$AudioStreamPlayer2.playing:
+			$AudioStreamPlayer2.play()
 		gravity = default_gravity / 5
 	else:
 		gravity = default_gravity
@@ -106,6 +108,7 @@ func shoot():
 	get_tree().root.add_child(egg_inst)
 	egg_inst.position = position
 	egg_inst.rotation.y =  $PlayerOrigin.rotation.y
+	$AudioStreamPlayer.play()
 	canShoot = false
 	await get_tree().create_timer(0.5).timeout
 	canShoot = true

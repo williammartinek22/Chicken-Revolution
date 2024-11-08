@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch1enmsgdk86"]
+[gd_scene load_steps=7 format=3 uid="uid://ch1enmsgdk86"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_fwya8"]
+[ext_resource type="AudioStream" uid="uid://cbfektgoli3eh" path="res://SFX/huh.mp3" id="2_tpl8r"]
+[ext_resource type="AudioStream" uid="uid://cictcy2akey7y" path="res://SFX/chicken_die.mp3" id="3_2u8t8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljwbd"]
 radius = 0.381363
@@ -31,6 +33,13 @@ material = SubResource("StandardMaterial3D_nkp30")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515788, 0)
 shape = SubResource("CylinderShape3D_1x37s")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tpl8r")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2u8t8")
+volume_db = -4.684
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
