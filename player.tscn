@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://qvm166at85df"]
+[gd_scene load_steps=12 format=3 uid="uid://qvm166at85df"]
 
 [ext_resource type="Script" path="res://CharacterController.gd" id="1_yy2pr"]
 [ext_resource type="PackedScene" uid="uid://0qvk7an71ipc" path="res://egg_projectile.tscn" id="2_5g3yd"]
 [ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="2_lyhkw"]
 [ext_resource type="AudioStream" uid="uid://cc42k2dbqxmfh" path="res://SFX/bloop.mp3" id="4_q32y2"]
+[ext_resource type="Script" path="res://camera_rig.gd" id="4_rgert"]
+[ext_resource type="Shader" path="res://foreground_shader.gdshader" id="5_nhl7m"]
 [ext_resource type="AudioStream" uid="uid://m6s537y75q0g" path="res://SFX/flap.mp3" id="5_o3g71"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
@@ -30,6 +32,13 @@ scale_over_velocity_min = 1.0
 scale_over_velocity_max = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4mqb6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67461"]
+shader = ExtResource("5_nhl7m")
+shader_parameter/MULTIPLIER = 0.56
+shader_parameter/SCALE = 0.5
+shader_parameter/SOFTNESS = 0.45
+shader_parameter/BASE_OPACITY = 1.0
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.802631, 0)
@@ -59,9 +68,47 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_fumi6")
 draw_pass_1 = SubResource("BoxMesh_4mqb6")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="camera_rig" type="Node3D" parent="."]
+script = ExtResource("4_rgert")
+
+[node name="Camera3D" type="Camera3D" parent="camera_rig"]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
+
+[node name="base_camera" type="Camera3D" parent="camera_rig"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
+cull_mask = 1047552
 current = true
+
+[node name="background_viewport_container" type="SubViewportContainer" parent="camera_rig/base_camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background_viewport" type="SubViewport" parent="camera_rig/base_camera/background_viewport_container"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="background_camera" type="Camera3D" parent="camera_rig/base_camera/background_viewport_container/background_viewport"]
+cull_mask = 1047553
+
+[node name="foreground_viewport_container" type="SubViewportContainer" parent="camera_rig/base_camera"]
+material = SubResource("ShaderMaterial_67461")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="foreground_viewport" type="SubViewport" parent="camera_rig/base_camera/foreground_viewport_container"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="foreground_camera" type="Camera3D" parent="camera_rig/base_camera/foreground_viewport_container/foreground_viewport"]
+cull_mask = 1047554
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q32y2")

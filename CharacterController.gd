@@ -16,7 +16,7 @@ var canShoot = true
 
 
 func _ready():
-	pass
+	GameManager.set_player(self)
 
 func _physics_process(delta):
 	#if get_tree().paused:
@@ -101,7 +101,8 @@ func obtain_egg():
 
 func _notification(item):
 	if item == NOTIFICATION_PREDELETE and get_tree():
-		$Camera3D.reparent(get_tree().root)
+		$camera_rig/Camera3D.current = true
+		$camera_rig/Camera3D.reparent(get_tree().root)
 		
 func shoot():
 	var egg_inst = eggProjectile.instantiate()

@@ -7,9 +7,10 @@ var baseY
 
 @export var clucks : Array[AudioStreamMP3]
 
-var rng = RandomNumberGenerator.new()
+var rng
 
 func _ready():
+	rng = RandomNumberGenerator.new()
 	baseY = position.y
 
 func _on_area_3d_body_entered(body):
