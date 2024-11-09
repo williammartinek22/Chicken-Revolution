@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlwvsiq1v7uy5"]
+
+[ext_resource type="Script" path="res://egg.gd" id="1_lq1d2"]
+[ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="2_8lv5d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx5se"]
+albedo_color = Color(0.706722, 0.704487, 0, 1)
+metallic = 0.5
+roughness = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_syu7g"]
+
+[sub_resource type="Animation" id="Animation_34oew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6kd0e"]
+resource_name = "egg_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.387679, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0105691, 1, 0, 0, 0, 0.510569, 1, 0, 0.387679, 0, 0.977236, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_unkjs"]
+_data = {
+"RESET": SubResource("Animation_34oew"),
+"egg_animation": SubResource("Animation_6kd0e")
+}
+
+[node name="Egg" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1197, 1.66872, -23.0097)
+script = ExtResource("1_lq1d2")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.17932, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_gx5se")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_syu7g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 2.838
+omni_attenuation = 8.048
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_unkjs")
+}
+autoplay = "egg_animation"
+speed_scale = 0.325
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8lv5d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

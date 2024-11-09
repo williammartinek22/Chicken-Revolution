@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://drtf3wm28un0p"]
+
+[ext_resource type="Texture2D" uid="uid://bjvitn83s2e5" path="res://game/Wood Box/Wood Box.png" id="1_o5bj1"]
+[ext_resource type="ArrayMesh" uid="uid://585d0sj75gha" path="res://game/Wood Box/Wood_Box.obj" id="2_2qrvr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgcjg"]
+albedo_texture = ExtResource("1_o5bj1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jecrm"]
+
+[node name="WoodBox" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -11.2174, 0.712825, -15.1471)
+material_override = SubResource("StandardMaterial3D_mgcjg")
+mesh = ExtResource("2_2qrvr")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.10135, 0.399599, 0.000219345)
+shape = SubResource("BoxShape3D_jecrm")
