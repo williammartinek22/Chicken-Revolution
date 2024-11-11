@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6iwrpyr23typ"]
+[gd_scene load_steps=36 format=3 uid="uid://b6iwrpyr23typ"]
 
 [ext_resource type="Texture2D" uid="uid://cn5r0st0yem48" path="res://game/Rocky_Floor/Rocky Floor.png" id="1_dofcr"]
 [ext_resource type="ArrayMesh" uid="uid://hxg8kaukypv1" path="res://game/Rocky_Floor/Rocky_Floor.obj" id="2_s65of"]
@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cfogfngl8e3rv" path="res://game/FloorTiles/RockyBottom/RockyBottom.png" id="11_26p0n"]
 [ext_resource type="ArrayMesh" uid="uid://cwtfog4j8f6fm" path="res://game/FloorTiles/Stairs/Stairs.obj" id="12_qdaha"]
 [ext_resource type="Texture2D" uid="uid://bfyl5qf7p4dyj" path="res://game/FloorTiles/Stairs/Stairs.png" id="13_1sldv"]
+[ext_resource type="ArrayMesh" uid="uid://cypsv0ov5ivfr" path="res://game/Bushes/Bushes.obj" id="14_lxf6h"]
+[ext_resource type="ArrayMesh" uid="uid://dv055suprntoi" path="res://game/Rocks/Rocks.obj" id="15_6tee7"]
+[ext_resource type="Texture2D" uid="uid://l2tb71j5rklp" path="res://game/Rocks/Rocks.png" id="16_koei6"]
+[ext_resource type="ArrayMesh" uid="uid://bi0aqfd27vna" path="res://game/NewWoodBox/NewWoodBox.obj" id="17_6v62k"]
+[ext_resource type="Texture2D" uid="uid://dy537agpksxfj" path="res://game/NewWoodBox/NewWoodBox.png" id="18_rwkoj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucj1i"]
 albedo_texture = ExtResource("1_dofcr")
@@ -48,6 +53,19 @@ albedo_color = Color(0.733333, 0.733333, 0.733333, 1)
 albedo_texture = ExtResource("13_1sldv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1am6m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvpio"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ateq3"]
+albedo_color = Color(0.733333, 0.733333, 0.733333, 1)
+albedo_texture = ExtResource("16_koei6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2pksh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpn55"]
+albedo_texture = ExtResource("18_rwkoj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qto2o"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -118,3 +136,33 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5gae6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs/StaticBody3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_1am6m")
+
+[node name="Bushes" type="MeshInstance3D" parent="."]
+mesh = ExtResource("14_lxf6h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bushes"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bushes/StaticBody3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("BoxShape3D_tvpio")
+
+[node name="Rocks" type="MeshInstance3D" parent="."]
+mesh = ExtResource("15_6tee7")
+surface_material_override/0 = SubResource("StandardMaterial3D_ateq3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rocks"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rocks/StaticBody3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("BoxShape3D_2pksh")
+
+[node name="NewWoodBox" type="MeshInstance3D" parent="."]
+mesh = ExtResource("17_6v62k")
+skeleton = NodePath("../Rocks/StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_dpn55")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NewWoodBox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewWoodBox/StaticBody3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_qto2o")
