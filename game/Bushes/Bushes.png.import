@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cemfisthfbu3l"
-path="res://.godot/imported/Chicken.png-1c89324a46223cb4070494e9708610cb.ctex"
+uid="uid://b01j5encm087y"
+path.s3tc="res://.godot/imported/Bushes.png-b256f8de92f7d18417432111f29ea246.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://game/Main_Character/Chicken.png"
-dest_files=["res://.godot/imported/Chicken.png-1c89324a46223cb4070494e9708610cb.ctex"]
+source_file="res://game/Bushes/Bushes.png"
+dest_files=["res://.godot/imported/Bushes.png-b256f8de92f7d18417432111f29ea246.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

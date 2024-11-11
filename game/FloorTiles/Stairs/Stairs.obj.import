@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwtfog4j8f6fm"
+path="res://.godot/imported/Stairs.obj-f3ffada019d889787c149b5ada72f9c3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Stairs.obj-f3ffada019d889787c149b5ada72f9c3.mesh"]
+
+source_file="res://game/FloorTiles/Stairs/Stairs.obj"
+dest_files=["res://.godot/imported/Stairs.obj-f3ffada019d889787c149b5ada72f9c3.mesh", "res://.godot/imported/Stairs.obj-f3ffada019d889787c149b5ada72f9c3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

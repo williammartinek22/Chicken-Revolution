@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cemfisthfbu3l"
-path="res://.godot/imported/Chicken.png-1c89324a46223cb4070494e9708610cb.ctex"
+uid="uid://bfyl5qf7p4dyj"
+path="res://.godot/imported/Stairs.png-1acdb4432798c0028079fa9b9a80e154.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/Main_Character/Chicken.png"
-dest_files=["res://.godot/imported/Chicken.png-1c89324a46223cb4070494e9708610cb.ctex"]
+source_file="res://game/FloorTiles/Stairs/Stairs.png"
+dest_files=["res://.godot/imported/Stairs.png-1acdb4432798c0028079fa9b9a80e154.ctex"]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=0
+compress/channel_pack=1
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0

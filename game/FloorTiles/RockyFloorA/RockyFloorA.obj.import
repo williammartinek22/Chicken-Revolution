@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bhoo8ogtcyghx"
+path="res://.godot/imported/RockyFloorA.obj-2d91ab575804ba33e80342897baa4b23.mesh"
+
+[deps]
+
+files=["res://.godot/imported/RockyFloorA.obj-2d91ab575804ba33e80342897baa4b23.mesh"]
+
+source_file="res://game/FloorTiles/RockyFloorA/RockyFloorA.obj"
+dest_files=["res://.godot/imported/RockyFloorA.obj-2d91ab575804ba33e80342897baa4b23.mesh", "res://.godot/imported/RockyFloorA.obj-2d91ab575804ba33e80342897baa4b23.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

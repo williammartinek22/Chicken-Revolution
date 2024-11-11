@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dahktbet1ci8j"
+path="res://.godot/imported/BigGreenTree.obj-262eb13afe1199e7d4ba642e796ff6df.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BigGreenTree.obj-262eb13afe1199e7d4ba642e796ff6df.mesh"]
+
+source_file="res://game/BigGreenTree/BigGreenTree.obj"
+dest_files=["res://.godot/imported/BigGreenTree.obj-262eb13afe1199e7d4ba642e796ff6df.mesh", "res://.godot/imported/BigGreenTree.obj-262eb13afe1199e7d4ba642e796ff6df.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
