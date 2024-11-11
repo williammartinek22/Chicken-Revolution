@@ -6,3 +6,7 @@ egg_crack.mp3 - Egg cracking (Pixabay): https://pixabay.com/sound-effects/egg-cr
 cluck1-4.mp3 - 047876_Chicken clucking (Pixabay): https://pixabay.com/sound-effects/047876-chicken-clucking-68610/
 huh.mp3 - surprised huh hmm hwaah comic (Pixabay): https://pixabay.com/sound-effects/surprised-huh-hmm-hwaah-comic-36295/
 chicken_die.mp3 - Chicken Single Alarm Call (Pixabay): https://pixabay.com/sound-effects/chicken-single-alarm-call-6056/
+
+water.gdshader - PSX Style Water Surface (GEG-fairbear8974): https://godotshaders.com/shader/psx-style-water-surface-pixelation-waves-scrolling-textures/
+water.png - Clear sea water (the3rdSequence): https://www.the3rdsequence.com/texturedb/texture/44/clear+sea+water/
+	Licensed under Creative Commons Attribution 4.0 International License: https://creativecommons.org/licenses/by/4.0/

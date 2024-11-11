@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 var SPEED = 2
 var targetCharacter = null
+var jumping = false
+var targetPosition = null
 @onready var agent = $NavigationAgent3D
 var baseY
 
@@ -25,13 +27,20 @@ func _on_area_3d_body_entered(body):
 func _physics_process(delta):
 	if targetCharacter and is_instance_valid(targetCharacter):
 		agent.set_target_position(targetCharacter.global_position)
-		if true:#position.distance_to(agent.get_next_path_position()) > scale.x + 0.1:
+		if jumping == false:#position.distance_to(agent.get_next_path_position()) > scale.x + 0.1:
 			var current_location = global_transform.origin
 			var next_location = agent.get_next_path_position()
 			var new_velocity = (next_location - current_location).normalized() * SPEED
 			velocity = new_velocity
 			move_and_collide(velocity * delta)
 			position.y = baseY
+		else:
+			position = position.lerp(targetPosition, delta)
+			if !$AudioStreamPlayer2.playing:
+				rng.randomize()
+				$AudioStreamPlayer2.play(randf_range(0.0,0.3))
+			if position.distance_to(targetPosition) < 1:
+				jumping = false
 		if has_node("Node3D"):
 			$Node3D.look_at(targetCharacter.global_position)
 			$Node3D.rotation.x = 0
@@ -46,3 +55,8 @@ func go_home(home):
 	$Area3D/CollisionShape3D.set_deferred("disabled", true)
 	await get_tree().create_timer(1.5).timeout
 	queue_free()
+
+
+func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
+	jumping = true
+	targetPosition = details["link_exit_position"]

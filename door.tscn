@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgbea1fkm8jd2"]
+
+[ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_5ekfh"]
+[ext_resource type="Script" path="res://door.gd" id="1_qtr0l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1of30"]
+size = Vector3(0.5, 3, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j32dl"]
+albedo_color = Color(0.17272, 0.108603, 0, 1)
+albedo_texture = ExtResource("1_5ekfh")
+albedo_texture_msdf = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvg87"]
+size = Vector3(2.25964, 2.26074, 10.0255)
+
+[node name="Door" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.390266, 0, 0, 0)
+script = ExtResource("1_qtr0l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4964, 0)
+shape = SubResource("BoxShape3D_1of30")
+disabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 3, 0, 0, 0, 10, 0, 1.4964, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_j32dl")
+
+[node name="DetectionZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35808, 1.12621, 0.0202636)
+shape = SubResource("BoxShape3D_tvg87")
+
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]

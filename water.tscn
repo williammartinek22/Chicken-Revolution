@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dul6ggpgpak6l"]
+
+[ext_resource type="Shader" path="res://water.gdshader" id="1_fucsi"]
+[ext_resource type="Texture2D" uid="uid://qcd4lakxqdyx" path="res://water.png" id="2_8t6xo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tp8a1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emlod"]
+render_priority = 0
+shader = ExtResource("1_fucsi")
+shader_parameter/albedo = Color(0.178605, 0.410125, 1, 1)
+shader_parameter/scroll_speed1 = Vector2(0.05, 0)
+shader_parameter/scroll_speed2 = Vector2(-0.03, 0)
+shader_parameter/blend_factor = 0.5
+shader_parameter/scale1 = Vector2(1, 1)
+shader_parameter/scale2 = Vector2(1, 1)
+shader_parameter/wave_strength = 1.0
+shader_parameter/wave_scale = 0.02
+shader_parameter/pixelation_level = 64
+shader_parameter/FoamSize = -0.115
+shader_parameter/WaterOpacity = 1.0
+shader_parameter/FoamGlowIntensity = 0.5
+shader_parameter/water_texture1 = ExtResource("2_8t6xo")
+shader_parameter/water_texture2 = ExtResource("2_8t6xo")
+
+[node name="Water" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_tp8a1")
+surface_material_override/0 = SubResource("ShaderMaterial_emlod")
