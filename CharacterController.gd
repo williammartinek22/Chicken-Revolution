@@ -13,6 +13,7 @@ var jumpBuffer = false
 var landing = false
 var lastDirection = Vector3.FORWARD
 var canShoot = true
+var keyCount = 0
 
 
 func _ready():
@@ -98,6 +99,13 @@ func _physics_process(delta):
 
 func obtain_egg():
 	print("Egg obtained!")
+
+func obtain_key():
+	keyCount += 1
+	print("Key obtained!")
+
+func obtain_power_up():
+	print("Power up obtained!")
 
 func _notification(item):
 	if item == NOTIFICATION_PREDELETE and get_tree():

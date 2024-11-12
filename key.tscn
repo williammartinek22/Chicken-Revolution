@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxohxxfj1d7ke"]
+
+[ext_resource type="Script" path="res://key.gd" id="1_ttrmp"]
+[ext_resource type="Material" uid="uid://d1fkjedb3lpjk" path="res://golden.tres" id="2_foieb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ftfds"]
+height = 0.471813
+radius = 0.985856
+
+[node name="Key" type="Area3D"]
+script = ExtResource("1_ttrmp")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.14516, 0)
+material = ExtResource("2_foieb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.1529, 0)
+shape = SubResource("CylinderShape3D_ftfds")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

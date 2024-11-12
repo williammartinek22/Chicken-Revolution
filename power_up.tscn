@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw2t0is451hia"]
+
+[ext_resource type="Script" path="res://power_up.gd" id="1_qodd1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bao6"]
+albedo_color = Color(0, 0.461026, 0.924111, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1l4jk"]
+
+[node name="PowerUp" type="Area3D"]
+script = ExtResource("1_qodd1")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material = SubResource("StandardMaterial3D_2bao6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1l4jk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

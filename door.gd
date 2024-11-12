@@ -10,11 +10,6 @@ func _on_detection_zone_body_entered(body: Node3D) -> void:
 
 func _process(delta):
 	if openVar:
-		open(delta)
-
-func open(delta):
-	while position.y < 1000:
-		position.y += 1 * delta
-		if position.y > 500:
-			print("QUEUE_FREE()")
+		position.y = move_toward(position.y, 2.688, delta * 3)
+		if position.y == 500:
 			queue_free()

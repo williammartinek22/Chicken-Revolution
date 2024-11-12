@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" path="res://egg.gd" id="1_lq1d2"]
 [ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="2_8lv5d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx5se"]
-albedo_color = Color(0.706722, 0.704487, 0, 1)
-metallic = 0.5
-roughness = 0.25
+[ext_resource type="Material" uid="uid://d1fkjedb3lpjk" path="res://golden.tres" id="2_u0t6r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_syu7g"]
 
@@ -60,7 +56,7 @@ script = ExtResource("1_lq1d2")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.17932, 0, 0, 0, 1, 0, 0, 0)
-material = SubResource("StandardMaterial3D_gx5se")
+material = ExtResource("2_u0t6r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_syu7g")
