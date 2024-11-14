@@ -197,40 +197,40 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("11_7smxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7595, 0.696845, -2.55347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7595, 0.308679, -2.55347)
 
 [node name="Enemy2" parent="." instance=ExtResource("11_7smxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0398, 0.696845, -6.44217)
 
 [node name="Enemy3" parent="." instance=ExtResource("11_7smxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0909, 0.696845, -3.63206)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0909, 0.312584, -3.63206)
 
 [node name="Enemy4" parent="." instance=ExtResource("11_7smxw")]
 transform = Transform3D(-0.719182, 0, -0.694822, 0, 1, 0, 0.694822, 0, -0.719182, 7.08646, 0.696845, -3.42394)
 
 [node name="chicken" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(-0.0207679, 0, -0.999784, 0, 1, 0, 0.999784, 0, -0.0207679, 25.3738, 0.690526, 0.7296)
+transform = Transform3D(-0.0207679, 0, -0.999784, 0, 1, 0, 0.999784, 0, -0.0207679, 25.3738, 0.302665, 0.7296)
 
 [node name="Chicken" parent="chicken/Node3D" index="0"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.395, 0)
 
 [node name="chicken2" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(0.0226001, 0, 0.999745, 0, 1, 0, -0.999745, 0, 0.0226001, 31.8532, 0.690526, -1.84766)
+transform = Transform3D(0.0226001, 0, 0.999745, 0, 1, 0, -0.999745, 0, 0.0226001, 31.8532, 0.295943, -1.84766)
 
 [node name="chicken3" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(-0.841218, 0, -0.540695, 0, 1, 0, 0.540695, 0, -0.841218, 23.8014, 0.690526, -15.8536)
+transform = Transform3D(-0.841218, 0, -0.540695, 0, 1, 0, 0.540695, 0, -0.841218, 23.8014, 0.305278, -15.8536)
 
 [node name="chicken4" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(-0.963359, 0, 0.268214, 0, 1, 0, -0.268214, 0, -0.963359, 25.6049, 0.690526, -16.6022)
+transform = Transform3D(-0.963359, 0, 0.268214, 0, 1, 0, -0.268214, 0, -0.963359, 25.6049, 0.31187, -16.6022)
 
 [node name="chicken5" parent="." instance=ExtResource("12_k6m5f")]
-transform = Transform3D(-0.961727, 0, 0.274009, 0, 1, 0, -0.274009, 0, -0.961727, 27.719, 0.690526, -16.1258)
+transform = Transform3D(-0.961727, 0, 0.274009, 0, 1, 0, -0.274009, 0, -0.961727, 27.719, 0.29559, -16.1258)
 
 [node name="Coop" parent="." instance=ExtResource("14_0grpo")]
-transform = Transform3D(-0.909686, 0, -0.415297, 0, 1, 0, 0.415297, 0, -0.909686, 32.8999, 0.641433, -8.99005)
+transform = Transform3D(-0.909686, 0, -0.415297, 0, 1, 0, 0.415297, 0, -0.909686, 32.8999, 0.299022, -8.99005)
 
 [node name="Coop2" parent="." instance=ExtResource("14_0grpo")]
-transform = Transform3D(-0.742058, 0, 0.670336, 0, 1, 0, -0.670336, 0, -0.742058, 32.8023, 0.641433, 1.8426)
+transform = Transform3D(-0.742058, 0, 0.670336, 0, 1, 0, -0.670336, 0, -0.742058, 32.8023, 0.302631, 1.8426)
 
 [node name="BigGreenTree4" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.739279, 0, -0.6734, 0, 1, 0, 0.6734, 0, -0.739279, -5.02145, 0.446038, 2.29185)

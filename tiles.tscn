@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6iwrpyr23typ"]
+[gd_scene load_steps=44 format=3 uid="uid://b6iwrpyr23typ"]
 
 [ext_resource type="Texture2D" uid="uid://cn5r0st0yem48" path="res://game/Rocky_Floor/Rocky Floor.png" id="1_dofcr"]
 [ext_resource type="ArrayMesh" uid="uid://hxg8kaukypv1" path="res://game/Rocky_Floor/Rocky_Floor.obj" id="2_s65of"]
@@ -18,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://l2tb71j5rklp" path="res://game/Rocks/Rocks.png" id="16_koei6"]
 [ext_resource type="ArrayMesh" uid="uid://bi0aqfd27vna" path="res://game/NewWoodBox/NewWoodBox.obj" id="17_6v62k"]
 [ext_resource type="Texture2D" uid="uid://dy537agpksxfj" path="res://game/NewWoodBox/NewWoodBox.png" id="18_rwkoj"]
+[ext_resource type="ArrayMesh" uid="uid://cb5itmspuq37i" path="res://game/NewFence/NewFence01/NewFence01.obj" id="19_cc1ui"]
+[ext_resource type="Texture2D" uid="uid://caar1w1ppnnpu" path="res://game/NewFence/NewFence01/NewFence01.png" id="20_rw6xc"]
+[ext_resource type="ArrayMesh" uid="uid://sd5mjgh8jy6x" path="res://game/NewFence/NewFence02/NewFence02.obj" id="21_fiksh"]
+[ext_resource type="Texture2D" uid="uid://b2857tvyc1en8" path="res://game/NewFence/NewFence02/NewFence02.png" id="22_ql1p0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucj1i"]
 albedo_texture = ExtResource("1_dofcr")
@@ -66,6 +70,18 @@ albedo_texture = ExtResource("16_koei6")
 albedo_texture = ExtResource("18_rwkoj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qto2o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xxni"]
+albedo_color = Color(0.733333, 0.733333, 0.733333, 1)
+albedo_texture = ExtResource("20_rw6xc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icf2e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33yi6"]
+albedo_color = Color(0.733333, 0.733333, 0.733333, 1)
+albedo_texture = ExtResource("22_ql1p0")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxasg"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -166,3 +182,23 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dpn55")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NewWoodBox/StaticBody3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_qto2o")
+
+[node name="NewFence01" type="MeshInstance3D" parent="."]
+mesh = ExtResource("19_cc1ui")
+surface_material_override/0 = SubResource("StandardMaterial3D_3xxni")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NewFence01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewFence01/StaticBody3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.502885, 0)
+shape = SubResource("BoxShape3D_icf2e")
+
+[node name="NewFence02" type="MeshInstance3D" parent="."]
+mesh = ExtResource("21_fiksh")
+surface_material_override/0 = SubResource("StandardMaterial3D_33yi6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NewFence02"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewFence02/StaticBody3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("BoxShape3D_qxasg")

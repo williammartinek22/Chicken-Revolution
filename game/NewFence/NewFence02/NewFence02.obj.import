@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://sd5mjgh8jy6x"
+path="res://.godot/imported/NewFence02.obj-0ffd5ad73be2027ce9673ab601c1c96f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/NewFence02.obj-0ffd5ad73be2027ce9673ab601c1c96f.mesh"]
+
+source_file="res://game/NewFence/NewFence02/NewFence02.obj"
+dest_files=["res://.godot/imported/NewFence02.obj-0ffd5ad73be2027ce9673ab601c1c96f.mesh", "res://.godot/imported/NewFence02.obj-0ffd5ad73be2027ce9673ab601c1c96f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
