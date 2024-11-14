@@ -180,7 +180,7 @@ script = ExtResource("5_ewcrj")
 [node name="Egg" parent="." instance=ExtResource("7_mmiso")]
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9533, 0.325511, -15.2438)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7954, 0.325511, -15.2438)
 end_position = Vector3(0, 0, 4.925)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

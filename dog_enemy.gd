@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var agent = $NavigationAgent3D
-var SPEED = 2
+var SPEED = 3.5
 var target: Vector3
 var targetCharacter
 var roam = false
@@ -11,7 +11,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	if roam:
 		rng.randomize()
-		target = Vector3(randf_range(-45,45),0,randf_range(-45,45))
+		target = Vector3(randf_range(-5,5),0,randf_range(-5,5))
 		updateTargetLocation(target)
 	else:
 		target = position
@@ -19,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	if targetCharacter:
 		look_at(targetCharacter.position)# + Vector3.FORWARD)
-	elif position != target:
+	else:
 		look_at(target)
 	rotation.x = 0
 	rotation.z = 0

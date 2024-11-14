@@ -13,6 +13,6 @@ func resize():
 func _ready():
 	resize()
 	
-func _process(delta):
+func _process(_delta):
 	background_camera.global_transform = get_child(1).global_transform
 	foreground_camera.global_transform = get_child(1).global_transform

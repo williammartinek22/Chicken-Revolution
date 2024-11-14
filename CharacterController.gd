@@ -2,18 +2,22 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const EGG_COOLDOWN = 0.5
 
 var default_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = default_gravity
 @export var perspectiveMovement = true
 @export var jumpBufferVal = 0.4
 @export var eggProjectile = load("res://egg_projectile.tscn")
+
 var canJump = true
 var jumpBuffer = false
 var landing = false
 var lastDirection = Vector3.FORWARD
 var canShoot = true
 var keyCount = 0
+var speedVal = SPEED
+var eggCooldownVal = EGG_COOLDOWN
 
 
 func _ready():
@@ -56,27 +60,27 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_up"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(SPEED * delta, 0, -SPEED * delta))
+			input_dir += (Vector3(speedVal * delta, 0, -speedVal * delta))
 		else:
-			input_dir += (Vector3(SPEED * delta, 0, 0))
+			input_dir += (Vector3(speedVal * delta, 0, 0))
 	
 	if Input.is_action_pressed("ui_down"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(-SPEED * delta, 0, SPEED * delta))
+			input_dir += (Vector3(-speedVal * delta, 0, speedVal * delta))
 		else:
-			input_dir += (Vector3(-SPEED * delta, 0, 0))
+			input_dir += (Vector3(-speedVal * delta, 0, 0))
 		
 	if Input.is_action_pressed("ui_left"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(-SPEED * delta, 0, -SPEED * delta))
+			input_dir += (Vector3(-speedVal * delta, 0, -speedVal * delta))
 		else:
-			input_dir += (Vector3(0, 0, -SPEED * delta))
+			input_dir += (Vector3(0, 0, -speedVal * delta))
 		
 	if Input.is_action_pressed("ui_right"):
 		if (perspectiveMovement):
-			input_dir += (Vector3(SPEED * delta, 0, SPEED * delta))
+			input_dir += (Vector3(speedVal * delta, 0, speedVal * delta))
 		else:
-			input_dir += (Vector3(0, 0, SPEED * delta))
+			input_dir += (Vector3(0, 0, speedVal * delta))
 		
 	if Input.is_action_just_released("shoot") and canShoot:
 		shoot()
@@ -85,11 +89,11 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		lastDirection = direction
 	if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
+			velocity.x = direction.x * speedVal
+			velocity.z = direction.z * speedVal
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speedVal)
+		velocity.z = move_toward(velocity.z, 0, speedVal)
 
 	move_and_slide()
 
@@ -105,7 +109,13 @@ func obtain_key():
 	print("Key obtained!")
 
 func obtain_power_up():
+	#Todo: Make the power up do something
+	speedVal = 7
+	eggCooldownVal = 0.25
 	print("Power up obtained!")
+	await get_tree().create_timer(5.0).timeout
+	speedVal = SPEED
+	eggCooldownVal = EGG_COOLDOWN
 
 func _notification(item):
 	if item == NOTIFICATION_PREDELETE and get_tree():
@@ -119,5 +129,5 @@ func shoot():
 	egg_inst.rotation.y =  $PlayerOrigin.rotation.y
 	$AudioStreamPlayer.play()
 	canShoot = false
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(eggCooldownVal).timeout
 	canShoot = true

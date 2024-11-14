@@ -14,7 +14,7 @@ func set_to_background():
 		get_child(1).set_layer_mask_value(1,true)
 		get_child(1).set_layer_mask_value(2,false)
 	
-func _process(delta):
+func _process(_delta):
 	if !GameManager.player:
 		return
 	#if GameManager.player.global_position.x > $CollisionShape3D.global_position.x + $CollisionShape3D.shape.extents.x and GameManager.player.global_position.z < $CollisionShape3D.global_position.z + $CollisionShape3D.shape.extents.z:
