@@ -184,6 +184,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_qto2o")
 
 [node name="NewFence01" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783297, 0)
 mesh = ExtResource("19_cc1ui")
 surface_material_override/0 = SubResource("StandardMaterial3D_3xxni")
 
@@ -194,6 +195,7 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.502885, 0)
 shape = SubResource("BoxShape3D_icf2e")
 
 [node name="NewFence02" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790541, 0)
 mesh = ExtResource("21_fiksh")
 surface_material_override/0 = SubResource("StandardMaterial3D_33yi6")
 
