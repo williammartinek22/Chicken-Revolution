@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dpexgxgqryj5i"]
+[gd_scene load_steps=21 format=3 uid="uid://dpexgxgqryj5i"]
 
 [ext_resource type="PackedScene" uid="uid://qvm166at85df" path="res://player.tscn" id="1"]
 [ext_resource type="Script" path="res://HubLevel.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://b5lrse0be7867" path="res://ui.tscn" id="4_ifscs"]
 [ext_resource type="ArrayMesh" uid="uid://dv055suprntoi" path="res://game/Rocks/Rocks.obj" id="5"]
 [ext_resource type="ArrayMesh" uid="uid://cypsv0ov5ivfr" path="res://game/Bushes/Bushes.obj" id="6"]
 [ext_resource type="ArrayMesh" uid="uid://bpkjn4fwl7a8s" path="res://game/Weeds/weeds01.obj" id="7"]
@@ -77,6 +78,8 @@ material = SubResource("StandardMaterial3D_1")
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="UI" parent="." instance=ExtResource("4_ifscs")]
 
 [node name="Chickens" type="Node3D" parent="."]
 

@@ -5,21 +5,34 @@ var SPEED = 3.5
 var target: Vector3
 var targetCharacter
 var roam = false
+var coolDown = 3.0
+var canAttack = true
+@export_enum("BrownDog","WhiteDog") var EnemyVariant: int
+var damage = 1
 
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	if roam:
 		rng.randomize()
-		target = Vector3(randf_range(-5,5),0,randf_range(-5,5))
+		target = Vector3(randf_range(-45,45),0,randf_range(-45,45))
 		updateTargetLocation(target)
 	else:
 		target = position
+		
+	$BrownDog.visible = false
+	$WhiteDog.visible = false
+	
+	match EnemyVariant:
+		0:
+			$BrownDog.visible = true
+		1:
+			$WhiteDog.visible = true
 
 func _physics_process(delta):
 	if targetCharacter:
 		look_at(targetCharacter.position)# + Vector3.FORWARD)
-	elif target != position:
+	elif !global_transform.origin.is_equal_approx(target):
 		look_at(target)
 	rotation.x = 0
 	rotation.z = 0
@@ -35,6 +48,7 @@ func _physics_process(delta):
 		var new_velocity = (next_location - current_location).normalized() * SPEED
 		target.y = position.y
 		velocity = new_velocity
+		velocity.y = 0
 		collide = move_and_collide(velocity * delta)
 	elif roam:
 		rng.randomize()
@@ -43,9 +57,16 @@ func _physics_process(delta):
 		
 	if collide:
 		var collider = collide.get_collider()
-		if collider.is_in_group("Player"):
+		if collider.is_in_group("Player") and canAttack:
+			canAttack = false
 			$AudioStreamPlayer2.play()
-			collider.queue_free()
+			collider.takeDamage(damage)
+			await get_tree().create_timer(coolDown).timeout
+			canAttack = true
+			
+	if !canAttack:
+		targetCharacter = null
+		updateTargetLocation(target)
 	
 func updateTargetLocation(targetVar):
 	agent.set_target_position(targetVar)
@@ -59,5 +80,6 @@ func _on_area_3d_body_entered(body):
 
 func _on_area_3d_body_exited(body):
 	if body.is_in_group("Player"):
+		canAttack = true
 		targetCharacter = null
 		updateTargetLocation(target)

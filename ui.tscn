@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5lrse0be7867"]
+
+[ext_resource type="Script" path="res://FPS_counter.gd" id="1_htuep"]
+[ext_resource type="Script" path="res://chicken_count.gd" id="2_xmyfs"]
+
+[node name="UI" type="Control"]
+z_index = 128
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 393.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "0 FPS"
+script = ExtResource("1_htuep")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1012.0
+offset_top = 1.0
+offset_right = 1112.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "/ Chickens"
+script = ExtResource("2_xmyfs")

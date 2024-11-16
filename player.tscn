@@ -116,3 +116,26 @@ stream = ExtResource("4_q32y2")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o3g71")
 volume_db = 5.0
+
+[node name="HealthBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="HealthBar"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 395.0
+offset_bottom = 52.0
+color = Color(0.348015, 0.359136, 0.348031, 1)
+
+[node name="Foreground" type="ColorRect" parent="HealthBar"]
+custom_minimum_size = Vector2(1.53, 0)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 395.0
+offset_bottom = 52.0
+color = Color(0, 0.713726, 0.101961, 1)

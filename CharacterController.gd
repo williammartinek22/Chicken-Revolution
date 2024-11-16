@@ -18,7 +18,9 @@ var canShoot = true
 var keyCount = 0
 var speedVal = SPEED
 var eggCooldownVal = EGG_COOLDOWN
-
+var totalHealth = 5
+var health = totalHealth
+@onready var healthyGreen = $HealthBar/Foreground.color
 
 func _ready():
 	GameManager.set_player(self)
@@ -131,3 +133,19 @@ func shoot():
 	canShoot = false
 	await get_tree().create_timer(eggCooldownVal).timeout
 	canShoot = true
+
+func takeDamage(damage):
+	health -= damage
+	if health > totalHealth:
+		health = totalHealth
+	var healthPercentage = float(health)/totalHealth
+	$HealthBar/Foreground.size.x = $HealthBar/Background.size.x * (healthPercentage)
+	if healthPercentage > 0.75:
+		$HealthBar/Foreground.color = healthyGreen
+	elif healthPercentage > 0.34:
+		$HealthBar/Foreground.color = Color.YELLOW
+	elif healthPercentage > 0.00:
+		$HealthBar/Foreground.color = Color.RED
+	else:
+		queue_free()
+		
