@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=29 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://LevelController.gd" id="1_w4fp6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qvm166at85df" path="res://player.tscn" id="3_mhgrm"]
 [ext_resource type="Script" path="res://FPS_counter.gd" id="5_ewcrj"]
 [ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="6_du12h"]
+[ext_resource type="Script" path="res://chicken_count.gd" id="6_vy5jq"]
 [ext_resource type="PackedScene" uid="uid://dlwvsiq1v7uy5" path="res://egg_collectable.tscn" id="7_mmiso"]
 [ext_resource type="PackedScene" uid="uid://ch1enmsgdk86" path="res://enemy.tscn" id="11_7smxw"]
 [ext_resource type="ArrayMesh" uid="uid://dahktbet1ci8j" path="res://game/BigGreenTree/BigGreenTree.obj" id="12_5dmou"]
@@ -158,13 +159,13 @@ text = "Isometric Movement"
 [node name="Player" parent="." instance=ExtResource("3_mhgrm")]
 transform = Transform3D(0.999989, 0, -0.00462518, 0, 1, 0, 0.00462518, 0, 0.999989, -4.30701, 0.802631, 0.670018)
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 7.0
@@ -174,6 +175,19 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "0 FPS"
 script = ExtResource("5_ewcrj")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1012.0
+offset_top = 1.0
+offset_right = 1112.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "/ Chickens"
+script = ExtResource("6_vy5jq")
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_du12h")]
 

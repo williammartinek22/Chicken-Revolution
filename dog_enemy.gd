@@ -19,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	if targetCharacter:
 		look_at(targetCharacter.position)# + Vector3.FORWARD)
-	else:
+	elif target != position:
 		look_at(target)
 	rotation.x = 0
 	rotation.z = 0

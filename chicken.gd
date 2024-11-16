@@ -6,6 +6,7 @@ var jumping = false
 var targetPosition = null
 @onready var agent = $NavigationAgent3D
 var baseY
+signal saved
 
 @export var clucks : Array[AudioStreamMP3]
 
@@ -54,6 +55,7 @@ func go_home(home):
 	agent.set_target_position(home.position)
 	$Area3D/CollisionShape3D.set_deferred("disabled", true)
 	await get_tree().create_timer(1.5).timeout
+	saved.emit()
 	queue_free()
 
 
