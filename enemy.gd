@@ -78,7 +78,10 @@ func updateTargetLocation(targetVar):
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("Player"):
-		$AudioStreamPlayer.play()
+		if EnemyVariant == 1:
+			$AudioStreamPlayer3.play()
+		else:
+			$AudioStreamPlayer.play()
 		targetCharacter = body
 		updateTargetLocation(targetCharacter.position)
 

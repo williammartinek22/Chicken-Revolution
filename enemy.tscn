@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch1enmsgdk86"]
+[gd_scene load_steps=10 format=3 uid="uid://ch1enmsgdk86"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_fwya8"]
 [ext_resource type="AudioStream" uid="uid://cbfektgoli3eh" path="res://SFX/huh.mp3" id="2_tpl8r"]
 [ext_resource type="AudioStream" uid="uid://cictcy2akey7y" path="res://SFX/chicken_die.mp3" id="3_2u8t8"]
+[ext_resource type="AudioStream" uid="uid://bcokwkjfvcm5s" path="res://SFX/hwaah.mp3" id="4_j6bye"]
 [ext_resource type="ArrayMesh" uid="uid://byfl251kply7l" path="res://game/OtherCharacters/Enemie1/Enemy1.obj" id="4_lg8u5"]
 [ext_resource type="ArrayMesh" uid="uid://cigqnggjdbbmt" path="res://game/OtherCharacters/Enemy3/Enemy3.obj" id="5_dvtx7"]
 [ext_resource type="ArrayMesh" uid="uid://dra1tdnyqpmjk" path="res://game/OtherCharacters/Enemy2/Enemy2.obj" id="5_yuhju"]
@@ -36,6 +37,9 @@ stream = ExtResource("2_tpl8r")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2u8t8")
 volume_db = -4.684
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j6bye")
 
 [node name="Enemy1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.805089, 0)
