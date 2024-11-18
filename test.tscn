@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ssk7yox0b3d8"]
+[gd_scene load_steps=34 format=3 uid="uid://ssk7yox0b3d8"]
 
 [ext_resource type="Texture2D" uid="uid://dsdim4tb0ned1" path="res://icon.svg" id="1_abspe"]
 [ext_resource type="Script" path="res://LevelController.gd" id="1_w4fp6"]
@@ -14,9 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://c456hmgtuscqe" path="res://game/BigGreenTree/BigGreenTree.png" id="13_f4lyr"]
 [ext_resource type="MeshLibrary" uid="uid://brd8t7ayvqcrx" path="res://tiles.tres" id="13_onptt"]
 [ext_resource type="PackedScene" uid="uid://b7gaj7rarnyas" path="res://coop.tscn" id="14_0grpo"]
+[ext_resource type="ArrayMesh" uid="uid://f235qs62ptq" path="res://game/Items/Lights/Lights.obj" id="15_fusul"]
+[ext_resource type="Texture2D" uid="uid://beiyv7yu221g6" path="res://game/Items/Lights/Lights.png" id="16_r5jof"]
 
 [sub_resource type="Gradient" id="Gradient_qy81b"]
-offsets = PackedFloat32Array(0.0699708, 0.950437)
+offsets = PackedFloat32Array(0.0699708, 0.157746, 0.864789, 0.950437)
+colors = PackedColorArray(0, 0, 0, 1, 0.0117647, 0.109804, 0.243137, 1, 0.901961, 0.980392, 0.811765, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xhkbb"]
 gradient = SubResource("Gradient_qy81b")
@@ -31,13 +34,19 @@ ground_horizon_color = Color(0.545098, 0.745098, 1, 1)
 sky_material = SubResource("ProceduralSkyMaterial_i7jf7")
 
 [sub_resource type="Environment" id="Environment_tkhwu"]
-background_mode = 1
-background_color = Color(0.561639, 0.524855, 0.811259, 1)
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_ivtgg")
-ambient_light_source = 2
 ambient_light_color = Color(1, 1, 0.976471, 1)
+ambient_light_sky_contribution = 0.0
 ambient_light_energy = 1.35
-adjustment_enabled = true
+reflected_light_source = 1
+tonemap_exposure = 1.16
+glow_intensity = 7.43
+fog_mode = 1
+fog_light_color = Color(0.505644, 0.718246, 0.948627, 1)
+fog_density = 1.0
+volumetric_fog_density = 0.0
 adjustment_color_correction = SubResource("GradientTexture1D_xhkbb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2r2b"]
@@ -68,6 +77,16 @@ albedo_texture = ExtResource("13_f4lyr")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_insqy"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mtdd"]
+albedo_texture = ExtResource("16_r5jof")
+emission_texture = ExtResource("16_r5jof")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6w63e"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2w5tj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4a1fo"]
+
 [node name="Test" type="Node3D"]
 script = ExtResource("1_w4fp6")
 
@@ -77,27 +96,30 @@ environment = SubResource("Environment_tkhwu")
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.28295, 0.337093, -7.39181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83681, 0.456347, -8.01335)
 light_energy = 4.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33624, 0, 0.139653)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79806, 0.405914, 1.46622)
 light_energy = 4.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6884, 2.44076, 3.18755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9245, 1.29555, 2.94263)
 light_energy = 4.0
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2922, 2.44076, -23.7786)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5201, 1.18636, -24.1036)
 light_energy = 4.0
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0719, 2.44076, -23.7786)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7899, 1.17014, -24.143)
 light_energy = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 0.508681, 0.860955, 0, -0.860955, 0.508681, 0, 18.2237, 13.5717)
+transform = Transform3D(-0.939693, -0.205833, 0.273149, 0, 0.798635, 0.601815, -0.34202, 0.565521, -0.750472, 0, 18.2237, 13.5717)
+light_energy = 0.5
+light_volumetric_fog_energy = 2.225
+shadow_enabled = true
 
 [node name="Fence" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -16)
@@ -191,7 +213,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0398, 0.696845, -6.44217)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0909, 0.312584, -3.63206)
 
 [node name="Enemy4" parent="." instance=ExtResource("11_7smxw")]
-transform = Transform3D(-0.719182, 0, -0.694822, 0, 1, 0, 0.694822, 0, -0.719182, 7.08646, 0.696845, -3.42394)
+transform = Transform3D(-0.719182, 0, -0.694822, 0, 1, 0, 0.694822, 0, -0.719182, 7.08646, 0.350075, -3.42394)
 
 [node name="chicken" parent="." instance=ExtResource("12_k6m5f")]
 transform = Transform3D(-0.0207679, 0, -0.999784, 0, 1, 0, 0.999784, 0, -0.0207679, 25.3738, 0.302665, 0.7296)
@@ -505,5 +527,53 @@ shape = SubResource("CapsuleShape3D_insqy")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("12_hvdnq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.8037, -0.576774, 0.700873)
+
+[node name="Lights2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79145, 0, 1.55897)
+mesh = ExtResource("15_fusul")
+surface_material_override/0 = SubResource("StandardMaterial3D_2mtdd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Lights2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights2/StaticBody3D"]
+shape = SubResource("CylinderShape3D_6w63e")
+
+[node name="Lights3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79145, 0, -8.10691)
+mesh = ExtResource("15_fusul")
+surface_material_override/0 = SubResource("StandardMaterial3D_2mtdd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Lights3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights3/StaticBody3D"]
+shape = SubResource("CylinderShape3D_6w63e")
+
+[node name="Lights4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8134, 0.716834, -24.1097)
+mesh = ExtResource("15_fusul")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Lights4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights4/StaticBody3D"]
+shape = SubResource("CylinderShape3D_2w5tj")
+
+[node name="Lights5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5114, 0.716834, -24.1097)
+mesh = ExtResource("15_fusul")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Lights5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights5/StaticBody3D"]
+shape = SubResource("CylinderShape3D_2w5tj")
+
+[node name="Lights6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9152, 0.720148, 2.99045)
+mesh = ExtResource("15_fusul")
+skeleton = NodePath("../Lights")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Lights6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights6/StaticBody3D"]
+shape = SubResource("CylinderShape3D_4a1fo")
 
 [editable path="chicken"]

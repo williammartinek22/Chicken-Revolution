@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://br1ov2blkb60s"
+path="res://.godot/imported/Keys.obj-85df5b76213f9f1335bf25a5b97b002b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Keys.obj-85df5b76213f9f1335bf25a5b97b002b.mesh"]
+
+source_file="res://game/Items/Keys/Keys.obj"
+dest_files=["res://.godot/imported/Keys.obj-85df5b76213f9f1335bf25a5b97b002b.mesh", "res://.godot/imported/Keys.obj-85df5b76213f9f1335bf25a5b97b002b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
