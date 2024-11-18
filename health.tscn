@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw2t0is451hia"]
+[gd_scene load_steps=9 format=3 uid="uid://bxs3mi6jpocbm"]
 
-[ext_resource type="Script" path="res://power_up.gd" id="1_qodd1"]
-[ext_resource type="ArrayMesh" uid="uid://5iy15375pf2h" path="res://game/Items/Warms/Warm.obj" id="2_agyw8"]
-[ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="3_4w05l"]
+[ext_resource type="Script" path="res://health.gd" id="1_16fc1"]
+[ext_resource type="Material" uid="uid://d1fkjedb3lpjk" path="res://golden.tres" id="2_yvhry"]
+[ext_resource type="ArrayMesh" uid="uid://b7xaid257qjju" path="res://game/Items/Health/Health.obj" id="3_2pbtr"]
+[ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="3_kghr6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1l4jk"]
 
@@ -11,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Warm:position")
+tracks/0/path = NodePath("Health:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,14 +28,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Warm:position")
+tracks/0/path = NodePath("Health:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.15242, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3015, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_823km"]
@@ -43,14 +44,16 @@ _data = {
 "float": SubResource("Animation_t4nur")
 }
 
-[node name="PowerUp" type="Area3D"]
-script = ExtResource("1_qodd1")
+[node name="Health" type="Area3D"]
+script = ExtResource("1_16fc1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_1l4jk")
 
-[node name="Warm" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_agyw8")
+[node name="Health" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("2_yvhry")
+mesh = ExtResource("3_2pbtr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -60,7 +63,7 @@ autoplay = "float"
 speed_scale = 0.33
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_4w05l")
+stream = ExtResource("3_kghr6")
 pitch_scale = 1.14
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

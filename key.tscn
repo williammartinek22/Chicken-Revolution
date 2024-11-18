@@ -1,21 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxohxxfj1d7ke"]
+[gd_scene load_steps=8 format=3 uid="uid://dxohxxfj1d7ke"]
 
 [ext_resource type="Script" path="res://key.gd" id="1_ttrmp"]
-[ext_resource type="Material" uid="uid://d1fkjedb3lpjk" path="res://golden.tres" id="2_foieb"]
+[ext_resource type="ArrayMesh" uid="uid://br1ov2blkb60s" path="res://game/Items/Keys/Keys.obj" id="2_4crno"]
+[ext_resource type="AudioStream" uid="uid://xwaegvawkd7s" path="res://SFX/key_get.mp3" id="3_lrq6m"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ftfds"]
 height = 0.471813
 radius = 0.985856
 
+[sub_resource type="Animation" id="Animation_00bf0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Keys:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.109349, 1.12411, -0.00251025)]
+}
+
+[sub_resource type="Animation" id="Animation_lqvbd"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Keys:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.109349, 1.12411, -0.00251025), Vector3(-0.109349, 1.47072, -0.00251025)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mysut"]
+_data = {
+"RESET": SubResource("Animation_00bf0"),
+"float": SubResource("Animation_lqvbd")
+}
+
 [node name="Key" type="Area3D"]
 script = ExtResource("1_ttrmp")
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.14516, 0)
-material = ExtResource("2_foieb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.1529, 0)
 shape = SubResource("CylinderShape3D_ftfds")
+
+[node name="Keys" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.109349, 1.12411, -0.00251025)
+mesh = ExtResource("2_4crno")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mysut")
+}
+autoplay = "float"
+speed_scale = 0.33
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lrq6m")
+volume_db = 14.63
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

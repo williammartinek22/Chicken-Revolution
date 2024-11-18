@@ -7,6 +7,8 @@ cluck1-4.mp3 - 047876_Chicken clucking (Pixabay): https://pixabay.com/sound-effe
 huh.mp3/hwaah.mp3 - surprised huh hmm hwaah comic (Pixabay): https://pixabay.com/sound-effects/surprised-huh-hmm-hwaah-comic-36295/
 chicken_die.mp3 - Chicken Single Alarm Call (Pixabay): https://pixabay.com/sound-effects/chicken-single-alarm-call-6056/
 dog_bark.mp3 - dog bark (u_5wgfa0ekjt): https://pixabay.com/sound-effects/dog-bark-179915/
+key_get.mp3 - Key get (Mendenhall02 (Freesound)): https://pixabay.com/sound-effects/key-get-39925/
+worm_get.mp3 - Squish Pop (PixelCrusher): https://pixabay.com/sound-effects/squish-pop-256410/
 
 water.gdshader - PSX Style Water Surface (GEG-fairbear8974): https://godotshaders.com/shader/psx-style-water-surface-pixelation-waves-scrolling-textures/
 water.png - Clear sea water (the3rdSequence): https://www.the3rdsequence.com/texturedb/texture/44/clear+sea+water/
