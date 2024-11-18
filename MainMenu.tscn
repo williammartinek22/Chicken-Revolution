@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ba2kw6mfwqu"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ba2kw6mfwqu"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://b6bvcv7osfkgd" path="res://Artboard-46.jpg" id="2_unr2p"]
+[ext_resource type="StyleBox" uid="uid://diwnf1eq8ni73" path="res://outline.tres" id="3_2hb77"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8p3r"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8w06"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktsc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjjmr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -23,41 +31,51 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w8p3r")
 
+[node name="Artboard-46" type="Sprite2D" parent="."]
+position = Vector2(612, 321)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_unr2p")
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 193.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Chicken Revolution"
+text = "________________"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Play"
+theme_override_styles/hover = ExtResource("3_2hb77")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a8w06")
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Options"
+theme_override_styles/hover = ExtResource("3_2hb77")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ktsc1")
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Quit"
+theme_override_styles/hover = ExtResource("3_2hb77")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjjmr")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
