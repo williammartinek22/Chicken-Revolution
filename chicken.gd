@@ -28,14 +28,26 @@ func _on_area_3d_body_entered(body):
 func _physics_process(delta):
 	if targetCharacter and is_instance_valid(targetCharacter):
 		agent.set_target_position(targetCharacter.global_position)
-		if jumping == false:#position.distance_to(agent.get_next_path_position()) > scale.x + 0.1:
+		if jumping == false:# and abs(position.distance_to(agent.get_next_path_position())) > scale.x * 1.2:
 			var current_location = global_transform.origin
 			var next_location = agent.get_next_path_position()
 			var new_velocity = (next_location - current_location).normalized() * SPEED
 			velocity = new_velocity
-			move_and_collide(velocity * delta)
+			var collisions = move_and_collide(velocity * delta)
 			position.y = baseY
-		else:
+			
+			if collisions:
+				var collider = collisions.get_collider()
+				if collider.is_in_group("Player"):
+					saved.emit()
+					$CollisionShape3D.set_deferred("disabled", true)
+					visible = false
+					if !$AudioStreamPlayer.playing:
+						$AudioStreamPlayer.stream = clucks.pick_random()
+						$AudioStreamPlayer.play()
+					await $AudioStreamPlayer.finished
+					queue_free()
+		elif jumping == true:
 			position = position.lerp(targetPosition, delta)
 			if !$AudioStreamPlayer2.playing:
 				rng.randomize()

@@ -16,3 +16,6 @@ func _process(_delta: float) -> void:
 
 func chicken_saved():
 	chickensSaved += 1
+	GameManager.update_chicken_count(get_tree().current_scene.get_path(), chickensSaved)
+	print(get_tree().current_scene.get_path())
+	print(GameManager.totalChickens)
