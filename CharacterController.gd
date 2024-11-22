@@ -51,10 +51,12 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_pressed("ui_accept") and !is_on_floor() and velocity.y < 0:
+		$AnimationPlayer.play("flap")
 		if !$AudioStreamPlayer2.playing:
 			$AudioStreamPlayer2.play()
 		gravity = default_gravity / 5
 	else:
+		$AnimationPlayer.play("rest",-1,4)
 		gravity = default_gravity
 
 	# Handle player input

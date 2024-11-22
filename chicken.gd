@@ -54,7 +54,7 @@ func _physics_process(delta):
 				$AudioStreamPlayer2.play(randf_range(0.0,0.3))
 			if position.distance_to(targetPosition) < 1:
 				jumping = false
-		if has_node("Node3D"):
+		if has_node("Node3D") and targetCharacter:
 			$Node3D.look_at(targetCharacter.global_position)
 			$Node3D.rotation.x = 0
 			$Node3D.rotation.z = 0

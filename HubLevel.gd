@@ -5,6 +5,13 @@ var chickens_collected = 0
 func _ready():
 	$Enclosure.body_entered.connect(_on_enclosure_body_entered)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
+
+	if Input.is_action_just_pressed("exit"):
+		get_tree().quit()
+		
 func _on_enclosure_body_entered(body):
 	if body.is_in_group("chickens"):
 		body.queue_free()

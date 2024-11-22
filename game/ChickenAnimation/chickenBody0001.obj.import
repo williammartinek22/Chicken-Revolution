@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgj2wsl1peon5"
+path="res://.godot/imported/chickenBody0001.obj-1ed1131e13ef5a79a9105ed3e45da685.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chickenBody0001.obj-1ed1131e13ef5a79a9105ed3e45da685.mesh"]
+
+source_file="res://game/ChickenAnimation/chickenBody0001.obj"
+dest_files=["res://.godot/imported/chickenBody0001.obj-1ed1131e13ef5a79a9105ed3e45da685.mesh", "res://.godot/imported/chickenBody0001.obj-1ed1131e13ef5a79a9105ed3e45da685.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
