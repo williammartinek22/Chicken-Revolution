@@ -1,0 +1,34 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://el22pfo7qjtq"
+path="res://.godot/imported/Action Comics Black.ttf-3a588766af39ac1e311407ac766e2b3a.fontdata"
+
+[deps]
+
+source_file="res://game/Font/Action Comics Black.ttf"
+dest_files=["res://.godot/imported/Action Comics Black.ttf-3a588766af39ac1e311407ac766e2b3a.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

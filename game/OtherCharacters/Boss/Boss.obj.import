@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pfr7yk87c1iy"
+path="res://.godot/imported/Boss.obj-6ac90d02143a7525b94abedb0932687a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Boss.obj-6ac90d02143a7525b94abedb0932687a.mesh"]
+
+source_file="res://game/OtherCharacters/Boss/Boss.obj"
+dest_files=["res://.godot/imported/Boss.obj-6ac90d02143a7525b94abedb0932687a.mesh", "res://.godot/imported/Boss.obj-6ac90d02143a7525b94abedb0932687a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
