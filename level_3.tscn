@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://ddpaeuynvctvh"]
+[gd_scene load_steps=22 format=3 uid="uid://ddpaeuynvctvh"]
 
 [ext_resource type="MeshLibrary" uid="uid://brd8t7ayvqcrx" path="res://tiles.tres" id="1_5m8wq"]
+[ext_resource type="Script" path="res://LevelController.gd" id="1_ipbpb"]
 [ext_resource type="PackedScene" uid="uid://dlwvsiq1v7uy5" path="res://egg_collectable.tscn" id="1_lqj2i"]
 [ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="2_ub0ge"]
 [ext_resource type="PackedScene" uid="uid://b5lrse0be7867" path="res://ui.tscn" id="4_gubg7"]
@@ -46,6 +47,7 @@ albedo_texture = ExtResource("8_n4l5f")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fbjo8"]
 
 [node name="Level 3" type="Node3D"]
+script = ExtResource("1_ipbpb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_oxyc3")

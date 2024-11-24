@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	text = str(chickensSaved) + "/" + str(totalChickens) + " Chickens"
+	text = "\n" + str(chickensSaved) + "/" + str(totalChickens) + " Chickens"
 
 func chicken_saved():
 	chickensSaved += 1

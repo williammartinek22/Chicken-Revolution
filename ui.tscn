@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5lrse0be7867"]
+[gd_scene load_steps=5 format=3 uid="uid://b5lrse0be7867"]
 
 [ext_resource type="Script" path="res://FPS_counter.gd" id="1_htuep"]
+[ext_resource type="FontFile" uid="uid://el22pfo7qjtq" path="res://game/Font/Action Comics Black.ttf" id="2_spm45"]
 [ext_resource type="Script" path="res://chicken_count.gd" id="2_xmyfs"]
+
+[sub_resource type="Theme" id="Theme_26lv1"]
+default_font = ExtResource("2_spm45")
 
 [node name="UI" type="Control"]
 z_index = 128
@@ -22,14 +26,19 @@ text = "0 FPS"
 script = ExtResource("1_htuep")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1012.0
-offset_top = 1.0
+offset_left = 947.0
+offset_top = -7.0
 offset_right = 1112.0
-offset_bottom = 64.0
+offset_bottom = 78.0
 grow_horizontal = 0
-text = "/ Chickens"
+theme = SubResource("Theme_26lv1")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "
+/ Chickens"
 script = ExtResource("2_xmyfs")
