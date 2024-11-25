@@ -151,3 +151,10 @@ func takeDamage(damage):
 	else:
 		queue_free()
 		
+
+
+func _on_button_button_down() -> void:
+	print("SPAWN CHICKENS")
+	$Button.disabled = true
+	await get_tree().create_timer(3.0).timeout
+	$Button.disabled = false

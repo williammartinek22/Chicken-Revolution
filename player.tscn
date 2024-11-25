@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://qvm166at85df"]
+[gd_scene load_steps=24 format=3 uid="uid://qvm166at85df"]
 
 [ext_resource type="Script" path="res://CharacterController.gd" id="1_yy2pr"]
 [ext_resource type="PackedScene" uid="uid://0qvk7an71ipc" path="res://egg_projectile.tscn" id="2_5g3yd"]
@@ -11,6 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cgj2wsl1peon5" path="res://game/ChickenAnimation/chickenBody0001.obj" id="5_vhnob"]
 [ext_resource type="ArrayMesh" uid="uid://n047hdfemva8" path="res://game/ChickenAnimation/chickenBody.obj" id="6_utqbo"]
 [ext_resource type="ArrayMesh" uid="uid://cmrqovdlioe7n" path="res://game/ChickenAnimation/chickenWing.obj" id="7_u5y88"]
+[ext_resource type="Texture2D" uid="uid://dnyrv5sk6vd4l" path="res://game/UIElements/Health-Bar.png" id="12_j7opx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -331,6 +332,12 @@ offset_top = 12.0
 offset_right = 395.0
 offset_bottom = 52.0
 color = Color(0, 0.713726, 0.101961, 1)
+
+[node name="Foreforeground" type="Sprite2D" parent="HealthBar"]
+texture_filter = 1
+position = Vector2(205, 34)
+scale = Vector2(0.522078, 0.686813)
+texture = ExtResource("12_j7opx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

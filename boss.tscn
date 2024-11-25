@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lmanumoq7ckt"]
+[gd_scene load_steps=12 format=3 uid="uid://lmanumoq7ckt"]
 
 [ext_resource type="Script" path="res://boss.gd" id="1_3b0ru"]
 [ext_resource type="AudioStream" uid="uid://cbfektgoli3eh" path="res://SFX/huh.mp3" id="2_fgwj1"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dsf46ypxdpl58" path="res://SFX/human_scream.mp3" id="5_w8wwu"]
 [ext_resource type="ArrayMesh" uid="uid://dra1tdnyqpmjk" path="res://game/OtherCharacters/Enemy2/Enemy2.obj" id="6_tjr5o"]
 [ext_resource type="ArrayMesh" uid="uid://cigqnggjdbbmt" path="res://game/OtherCharacters/Enemy3/Enemy3.obj" id="7_b0b8w"]
+[ext_resource type="Texture2D" uid="uid://dnyrv5sk6vd4l" path="res://game/UIElements/Health-Bar.png" id="9_nmsmg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljwbd"]
 radius = 0.381363
@@ -70,18 +71,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="enemyBackground" type="ColorRect" parent="Control"]
-offset_left = 756.0
-offset_top = 7.0
-offset_right = 1147.0
-offset_bottom = 47.0
+layout_mode = 0
+offset_left = 750.0
+offset_top = 18.0
+offset_right = 1141.0
+offset_bottom = 58.0
 color = Color(0.34902, 0.360784, 0.34902, 1)
 
 [node name="enemyForeground" type="ColorRect" parent="Control"]
-offset_left = 756.0
-offset_top = 7.0
-offset_right = 1147.0
-offset_bottom = 47.0
+layout_mode = 0
+offset_left = 750.0
+offset_top = 18.0
+offset_right = 1141.0
+offset_bottom = 58.0
 color = Color(1, 0, 0, 1)
+
+[node name="enemyForeforeground" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(944.5, 40.5)
+scale = Vector2(0.538961, 0.758242)
+texture = ExtResource("9_nmsmg")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
