@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://qvm166at85df"]
+[gd_scene load_steps=25 format=3 uid="uid://qvm166at85df"]
 
 [ext_resource type="Script" path="res://CharacterController.gd" id="1_yy2pr"]
 [ext_resource type="PackedScene" uid="uid://0qvk7an71ipc" path="res://egg_projectile.tscn" id="2_5g3yd"]
@@ -11,6 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cgj2wsl1peon5" path="res://game/ChickenAnimation/chickenBody0001.obj" id="5_vhnob"]
 [ext_resource type="ArrayMesh" uid="uid://n047hdfemva8" path="res://game/ChickenAnimation/chickenBody.obj" id="6_utqbo"]
 [ext_resource type="ArrayMesh" uid="uid://cmrqovdlioe7n" path="res://game/ChickenAnimation/chickenWing.obj" id="7_u5y88"]
+[ext_resource type="Script" path="res://camera.gd" id="9_wcjua"]
 [ext_resource type="Texture2D" uid="uid://dnyrv5sk6vd4l" path="res://game/UIElements/Health-Bar.png" id="12_j7opx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhxi0"]
@@ -53,6 +54,57 @@ shader_parameter/MULTIPLIER = 0.56
 shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.45
 shader_parameter/BASE_OPACITY = 1.0
+
+[sub_resource type="Animation" id="Animation_kvfdm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerOrigin/rightWing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.105464, 0.418341, 0.0531154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerOrigin/rightWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.41841)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerOrigin/leftWing:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.465402, 0.255733, 0.0564193)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerOrigin/leftWing:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.33588)]
+}
 
 [sub_resource type="Animation" id="Animation_u6mjl"]
 resource_name = "flap"
@@ -105,57 +157,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 1.33588), Vector3(0, 0, -0.174847)]
-}
-
-[sub_resource type="Animation" id="Animation_kvfdm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerOrigin/rightWing:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.105464, 0.418341, 0.0531154)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerOrigin/rightWing:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -1.41841)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerOrigin/leftWing:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.465402, 0.255733, 0.0564193)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerOrigin/leftWing:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 1.33588)]
 }
 
 [sub_resource type="Animation" id="Animation_fj1n8"]
@@ -241,12 +242,12 @@ material_override = SubResource("StandardMaterial3D_i0vxw")
 mesh = ExtResource("5_vhnob")
 
 [node name="rightWing" type="MeshInstance3D" parent="PlayerOrigin"]
-transform = Transform3D(0.151795, 0.988412, 0, -0.988412, 0.151795, 0, 0, 0, 1, 0.105464, 0.418341, 0.0531154)
+transform = Transform3D(0.151797, 0.988412, 0, -0.988412, 0.151797, 0, 0, 0, 1, 0.105464, 0.418341, 0.0531154)
 material_override = SubResource("StandardMaterial3D_mw4gp")
 mesh = ExtResource("6_utqbo")
 
 [node name="leftWing" type="MeshInstance3D" parent="PlayerOrigin"]
-transform = Transform3D(0.232766, -0.972532, 0, 0.972532, 0.232766, 0, 0, 0, 1, 0.465402, 0.255733, 0.0564193)
+transform = Transform3D(0.232761, -0.972533, 0, 0.972533, 0.232761, 0, 0, 0, 1, 0.465402, 0.255733, 0.0564193)
 material_override = SubResource("StandardMaterial3D_i3q3j")
 mesh = ExtResource("7_u5y88")
 
@@ -271,6 +272,7 @@ transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5, 5)
 cull_mask = 1047552
 current = true
+script = ExtResource("9_wcjua")
 
 [node name="background_viewport_container" type="SubViewportContainer" parent="camera_rig/base_camera"]
 anchors_preset = 15
