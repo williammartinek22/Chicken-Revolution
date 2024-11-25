@@ -6,6 +6,7 @@
 
 [sub_resource type="Theme" id="Theme_26lv1"]
 default_font = ExtResource("2_spm45")
+default_font_size = 32
 
 [node name="UI" type="Control"]
 z_index = 128
@@ -15,6 +16,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 7.0
@@ -26,19 +28,19 @@ text = "0 FPS"
 script = ExtResource("1_htuep")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-texture_filter = 1
+texture_filter = 5
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 947.0
-offset_top = -7.0
-offset_right = 1112.0
-offset_bottom = 78.0
+offset_left = 760.0
+offset_top = -18.0
+offset_right = 1113.0
+offset_bottom = 128.0
 grow_horizontal = 0
 theme = SubResource("Theme_26lv1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 10
 text = "
-/ Chickens"
+ / Chickens"
 script = ExtResource("2_xmyfs")

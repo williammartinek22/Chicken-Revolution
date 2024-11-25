@@ -9,6 +9,9 @@ var coolDown = 3.0
 var canAttack = true
 var damage = 1
 @export_enum("Enemy1","Enemy2","Enemy3") var EnemyVariant: int
+@export var totalHealth = 4
+var health = totalHealth
+var key = "res://key.tscn"
 
 var rng = RandomNumberGenerator.new()
 
@@ -90,3 +93,20 @@ func _on_area_3d_body_exited(body):
 		canAttack = true
 		targetCharacter = null
 		updateTargetLocation(target)
+
+func take_damage():
+	health -= 1
+	var healthPercentage = float(health)/totalHealth
+	$Control/enemyForeground.size.x = $Control/enemyBackground.size.x * (healthPercentage)
+	if health <= 0:
+		die()
+		
+func die():
+	var keyInst = load(key).instantiate()
+	keyInst.position = position
+	$CollisionShape3D.disabled = true
+	get_tree().root.add_child(keyInst)
+	$AudioStreamPlayer4.play()
+	visible = false
+	await $AudioStreamPlayer4.finished
+	queue_free()

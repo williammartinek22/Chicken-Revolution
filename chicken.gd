@@ -42,10 +42,8 @@ func _physics_process(delta):
 					saved.emit()
 					$CollisionShape3D.set_deferred("disabled", true)
 					visible = false
-					if !$AudioStreamPlayer.playing:
-						$AudioStreamPlayer.stream = clucks.pick_random()
-						$AudioStreamPlayer.play()
-					await $AudioStreamPlayer.finished
+					$AudioStreamPlayer3.play()
+					await $AudioStreamPlayer3.finished
 					queue_free()
 		elif jumping == true:
 			position = position.lerp(targetPosition, delta)

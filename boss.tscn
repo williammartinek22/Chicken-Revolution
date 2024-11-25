@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://lmanumoq7ckt"]
+[gd_scene load_steps=11 format=3 uid="uid://lmanumoq7ckt"]
 
 [ext_resource type="Script" path="res://boss.gd" id="1_3b0ru"]
 [ext_resource type="AudioStream" uid="uid://cbfektgoli3eh" path="res://SFX/huh.mp3" id="2_fgwj1"]
 [ext_resource type="AudioStream" uid="uid://cictcy2akey7y" path="res://SFX/chicken_die.mp3" id="3_5n5au"]
 [ext_resource type="AudioStream" uid="uid://bcokwkjfvcm5s" path="res://SFX/hwaah.mp3" id="4_fjv4l"]
 [ext_resource type="ArrayMesh" uid="uid://byfl251kply7l" path="res://game/OtherCharacters/Enemie1/Enemy1.obj" id="5_lh711"]
+[ext_resource type="AudioStream" uid="uid://dsf46ypxdpl58" path="res://SFX/human_scream.mp3" id="5_w8wwu"]
 [ext_resource type="ArrayMesh" uid="uid://dra1tdnyqpmjk" path="res://game/OtherCharacters/Enemy2/Enemy2.obj" id="6_tjr5o"]
 [ext_resource type="ArrayMesh" uid="uid://cigqnggjdbbmt" path="res://game/OtherCharacters/Enemy3/Enemy3.obj" id="7_b0b8w"]
 
@@ -16,7 +17,7 @@ height = 1.74533
 height = 1.04711
 radius = 10.5297
 
-[node name="Boss" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Boss" type="CharacterBody3D" groups=["Boss"]]
 script = ExtResource("1_3b0ru")
 EnemyVariant = 2
 
@@ -42,6 +43,11 @@ volume_db = -4.684
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_fjv4l")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w8wwu")
+volume_db = -4.685
+pitch_scale = 0.75
 
 [node name="Enemy1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.805089, 0)

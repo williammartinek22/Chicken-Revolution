@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b5sx8yolig7sn"]
+[gd_scene load_steps=37 format=3 uid="uid://b5sx8yolig7sn"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_4xjav"]
 [ext_resource type="MeshLibrary" uid="uid://brd8t7ayvqcrx" path="res://tiles.tres" id="1_43bw3"]
@@ -19,6 +19,7 @@
 [ext_resource type="ArrayMesh" uid="uid://l82w7cqcebjs" path="res://game/Gate/Gate.obj" id="17_72h8u"]
 [ext_resource type="PackedScene" uid="uid://c4478ilc23gnh" path="res://chicken.tscn" id="17_p781f"]
 [ext_resource type="Texture2D" uid="uid://cd3oajh8tgdwg" path="res://game/Gate/Gate.png" id="18_p4wdv"]
+[ext_resource type="AudioStream" uid="uid://ddnxerihppcys" path="res://SFX/door_opening.mp3" id="19_cfg60"]
 [ext_resource type="ArrayMesh" uid="uid://f235qs62ptq" path="res://game/Items/Lights/Lights.obj" id="19_e66l4"]
 [ext_resource type="ArrayMesh" uid="uid://dahktbet1ci8j" path="res://game/BigGreenTree/BigGreenTree.obj" id="22_d7ycx"]
 [ext_resource type="Texture2D" uid="uid://c456hmgtuscqe" path="res://game/BigGreenTree/BigGreenTree.png" id="23_bhlt1"]
@@ -835,6 +836,9 @@ shape = SubResource("ConcavePolygonShape3D_0qmav")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NewGate/DetectionZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221226, -0.668897, 0.986347)
 shape = SubResource("BoxShape3D_p0psj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NewGate"]
+stream = ExtResource("19_cfg60")
 
 [node name="Lights2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.48928, 0, 1.7455)

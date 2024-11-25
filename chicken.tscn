@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4478ilc23gnh"]
+[gd_scene load_steps=11 format=3 uid="uid://c4478ilc23gnh"]
 
 [ext_resource type="Script" path="res://chicken.gd" id="1_gym23"]
 [ext_resource type="AudioStream" uid="uid://dfqbykigfhn0v" path="res://SFX/cluck1.mp3" id="2_ah07i"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://u8f8uqdb3nxm" path="res://SFX/cluck3.mp3" id="4_6ty3h"]
 [ext_resource type="AudioStream" uid="uid://ciujpqrhhm1gr" path="res://SFX/cluck4.mp3" id="5_8qi40"]
 [ext_resource type="AudioStream" uid="uid://m6s537y75q0g" path="res://SFX/flap.mp3" id="7_07xjc"]
+[ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="8_eu4tx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1sr7s"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -44,6 +45,11 @@ shape = SubResource("CylinderShape3D_w35vr")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_07xjc")
 volume_db = 5.0
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_eu4tx")
+volume_db = 0.315
+pitch_scale = 2.63
 
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

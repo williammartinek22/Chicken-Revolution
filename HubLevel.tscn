@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpexgxgqryj5i"]
+[gd_scene load_steps=27 format=3 uid="uid://dpexgxgqryj5i"]
 
 [ext_resource type="PackedScene" uid="uid://qvm166at85df" path="res://player.tscn" id="1"]
 [ext_resource type="Script" path="res://HubLevel.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="4_ac1d8"]
 [ext_resource type="PackedScene" uid="uid://b5lrse0be7867" path="res://ui.tscn" id="4_ifscs"]
 [ext_resource type="Script" path="res://chicken_count_label.gd" id="5_itc07"]
 [ext_resource type="FontFile" uid="uid://el22pfo7qjtq" path="res://game/Font/Action Comics Black.ttf" id="7_xky0d"]
@@ -80,6 +81,8 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="UI" parent="." instance=ExtResource("4_ifscs")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_ac1d8")]
 
 [node name="Chickens" type="Node3D" parent="."]
 

@@ -11,6 +11,9 @@ func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.queue_free()
 		crack()
+	elif body.is_in_group("Boss"):
+		body.take_damage()
+		crack()
 	elif body.get_parent() is StaticBody3D:
 		crack()
 

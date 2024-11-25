@@ -32,6 +32,7 @@ project/assembly_name="Chicken Revolution"
 Enemy=""
 Player=""
 NPC=""
+Boss=""
 
 [input]
 
