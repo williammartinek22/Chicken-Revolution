@@ -307,10 +307,12 @@ cull_mask = 1047554
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q32y2")
+bus = &"SFX"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o3g71")
 volume_db = 5.0
+bus = &"SFX"
 
 [node name="HealthBar" type="Control" parent="."]
 layout_mode = 3

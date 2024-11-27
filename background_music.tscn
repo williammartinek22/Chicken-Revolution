@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://0yfece3xpd1r"]
+
+[ext_resource type="AudioStream" uid="uid://c1vykgs4qd1i3" path="res://game/Music/chickenrevolution_maintheme_01.mp3" id="1_0r446"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_0r446")
+volume_db = -11.348
+autoplay = true
+bus = &"Music"

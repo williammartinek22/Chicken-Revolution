@@ -66,5 +66,6 @@ speed_scale = 0.33
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lrq6m")
 volume_db = 14.63
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

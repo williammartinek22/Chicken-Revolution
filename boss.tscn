@@ -37,18 +37,22 @@ shape = SubResource("CylinderShape3D_1x37s")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fgwj1")
 pitch_scale = 0.71
+bus = &"SFX"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5n5au")
 volume_db = -4.684
+bus = &"SFX"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_fjv4l")
+bus = &"SFX"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_w8wwu")
 volume_db = -4.685
 pitch_scale = 0.75
+bus = &"SFX"
 
 [node name="Enemy1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.805089, 0)

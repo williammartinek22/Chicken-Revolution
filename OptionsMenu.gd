@@ -12,6 +12,8 @@ var action_to_remap = null
 const CONFIG_FILE = "user://settings.cfg"
 var config = ConfigFile.new()
 
+var currentScene = null
+
 func _ready():
 	setup_keybinds()
 	load_settings()
@@ -20,7 +22,7 @@ func _ready():
 func setup_keybinds():
 	var actions = ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept"]
 	var display_names = {
-		"ui_up": "Move Fodard",
+		"ui_up": "Move Forward",
 		"ui_down": "Move Backward",
 		"ui_left": "Move Left",
 		"ui_right": "Move Right",
@@ -126,9 +128,9 @@ func save_settings():
 			config.set_value("controls", action, events[0])
 	
 	# Save audio settings
-	config.set_value("audio", "master", master_slider.value)
-	config.set_value("audio", "music", music_slider.value)
-	config.set_value("audio", "sfx", sfx_slider.value)
+	config.set_value("audio", "Master", master_slider.value)
+	config.set_value("audio", "Music", music_slider.value)
+	config.set_value("audio", "SFX", sfx_slider.value)
 	
 	config.save(CONFIG_FILE)
 
@@ -146,12 +148,18 @@ func load_settings():
 			action_buttons[action].text = event.as_text()
 	
 	# Load audio settings
-	if config.has_section_key("audio", "master"):
-		master_slider.value = config.get_value("audio", "master")
-	if config.has_section_key("audio", "music"):
-		music_slider.value = config.get_value("audio", "music")
-	if config.has_section_key("audio", "sfx"):
-		sfx_slider.value = config.get_value("audio", "sfx")
+	if config.has_section_key("audio", "Master"):
+		master_slider.value = config.get_value("audio", "Master")
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_slider.value))
+	if config.has_section_key("audio", "Music"):
+		music_slider.value = config.get_value("audio", "Music")
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_slider.value))
+	if config.has_section_key("audio", "SFX"):
+		sfx_slider.value = config.get_value("audio", "SFX")
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_slider.value))
+	save_settings()
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	#get_tree().paused = false
+	queue_free()
+	#get_tree().change_scene_to_file(currentScene)

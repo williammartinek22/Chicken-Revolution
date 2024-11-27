@@ -62,5 +62,6 @@ speed_scale = 0.33
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4w05l")
 pitch_scale = 1.14
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,9 +10,9 @@ func _ready():
 	print("PauseMenu setup complete")
 
 func _input(event):
-	print("Input received in PauseMenu:", event)
+	#print("Input received in PauseMenu:", event)
 	if event.is_action_pressed("pause"):
-		print("Pause key detected")
+		#print("Pause key detected")
 		if !is_paused:
 			pause()
 		else:
@@ -37,8 +37,10 @@ func _on_resume_button_pressed():
 	resume()
 
 func _on_settings_button_pressed():
-	get_tree().change_scene_to_file("res://OptionsMenu.tscn")
-	get_tree().paused = false
+	var optionsInst = load("res://OptionsMenu.tscn").instantiate()
+	get_tree().root.add_child(optionsInst)
+	#get_tree().change_scene_to_file("res://OptionsMenu.tscn")
+	#get_tree().paused = false
 
 func _on_menu_button_pressed():
 	get_tree().paused = false

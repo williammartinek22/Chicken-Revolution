@@ -7,7 +7,7 @@ bg_color = Color(0.121569, 0.121569, 0.121569, 0.784314)
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
-layer = 128
+layer = 127
 script = ExtResource("1_pause")
 
 [node name="Control" type="Control" parent="."]
