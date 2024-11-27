@@ -1,13 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1ba2kw6mfwqu"]
+[gd_scene load_steps=12 format=3 uid="uid://d1ba2kw6mfwqu"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://b6bvcv7osfkgd" path="res://Artboard-46.jpg" id="2_unr2p"]
 [ext_resource type="StyleBox" uid="uid://diwnf1eq8ni73" path="res://outline.tres" id="3_2hb77"]
 [ext_resource type="Texture2D" uid="uid://dfop2tww5mqmi" path="res://game/UIElements/Home-Screen.png" id="3_fb1uk"]
+[ext_resource type="Texture2D" uid="uid://fcjxjt8y364d" path="res://Chicken-Revolution-Main-Manu-Image.jpg" id="5_kjc34"]
 [ext_resource type="PackedScene" uid="uid://sb4p6c8faysr" path="res://OptionsMenu.tscn" id="5_p0xyb"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dgo5e"]
+load_path = "res://.godot/imported/MainMenuBackground.png-28bb8c19c3b373c8ec880fb5c484110f.ctex"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8p3r"]
-bg_color = Color(0.415686, 1, 1, 1)
+bg_color = Color(0, 0, 0, 0.737255)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8w06"]
 
@@ -24,7 +28,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
+[node name="MainMenuBackground" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(602, 338)
+scale = Vector2(1.31385, 1.31385)
+texture = SubResource("CompressedTexture2D_dgo5e")
+
+[node name="Chicken-revolution-main-manu-image" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(575.667, 324.25)
+scale = Vector2(0.600463, 0.600463)
+texture = ExtResource("5_kjc34")
+
 [node name="Background" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +57,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_unr2p")
 
 [node name="Home-screen" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(579, 330)
 scale = Vector2(0.623148, 0.623148)
@@ -51,7 +69,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 122.0
-offset_bottom = -43.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 

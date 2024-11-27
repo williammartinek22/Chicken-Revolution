@@ -6,5 +6,8 @@ func _on_body_entered(body: Node3D) -> void:
 		body.obtain_egg()
 		$AudioStreamPlayer.play()
 		await $AudioStreamPlayer.finished
-		get_tree().change_scene_to_file("res://HubLevel.tscn")
+		if get_tree().current_scene.name == "Level 4":
+			get_tree().change_scene_to_file("res://credits.tscn")
+		else:
+			get_tree().change_scene_to_file("res://HubLevel.tscn")
 		queue_free()

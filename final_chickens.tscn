@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc45rsl7uwd2q"]
+
+[ext_resource type="Script" path="res://final_chickens.gd" id="1_s31xk"]
+[ext_resource type="ArrayMesh" uid="uid://k1cix80ilr71" path="res://game/Main_Character/Chicken.obj" id="6_laqn3"]
+[ext_resource type="AudioStream" uid="uid://m6s537y75q0g" path="res://SFX/flap.mp3" id="7_sxqlf"]
+[ext_resource type="AudioStream" uid="uid://dldyu25olfxvj" path="res://SFX/egg_collect.mp3" id="8_ta5w3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1sr7s"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w35vr"]
+height = 1.04711
+radius = 3.33105
+
+[node name="chicken" type="CharacterBody3D"]
+collision_layer = 2
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_s31xk")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411847, 0)
+
+[node name="Chicken" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00165004, -0.394936, 0.00359274)
+mesh = ExtResource("6_laqn3")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411847, 0)
+shape = SubResource("BoxShape3D_1sr7s")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 21.21
+path_postprocessing = 1
+simplify_path = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515788, 0)
+shape = SubResource("CylinderShape3D_w35vr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sxqlf")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ta5w3")
+volume_db = 0.315
+pitch_scale = 2.63
+bus = &"SFX"
+
+[connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

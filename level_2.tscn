@@ -839,6 +839,7 @@ shape = SubResource("BoxShape3D_p0psj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NewGate"]
 stream = ExtResource("19_cfg60")
+bus = &"SFX"
 
 [node name="Lights2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.48928, 0, 1.7455)

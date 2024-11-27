@@ -9,7 +9,7 @@ var coolDown = 3.0
 var canAttack = true
 var damage = 1
 @export_enum("Enemy1","Enemy2","Enemy3") var EnemyVariant: int
-@export var totalHealth = 4
+@export var totalHealth = 20
 var health = totalHealth
 var key = "res://key.tscn"
 

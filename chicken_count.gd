@@ -7,6 +7,7 @@ var chickensSaved = 0
 func _ready() -> void:
 	totalChickens = get_tree().get_nodes_in_group("NPC").size()
 	for chicken in get_tree().get_nodes_in_group("NPC"):
+		print(chicken.name)
 		chicken.saved.connect(chicken_saved)
 
 

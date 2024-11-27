@@ -9,6 +9,7 @@ var gravity = default_gravity
 @export var perspectiveMovement = true
 @export var jumpBufferVal = 0.4
 @export var eggProjectile = load("res://egg_projectile.tscn")
+var finalChickens = load("res://final_chickens.tscn")
 
 var canJump = true
 var jumpBuffer = false
@@ -21,8 +22,13 @@ var eggCooldownVal = EGG_COOLDOWN
 var totalHealth = 5
 var health = totalHealth
 @onready var healthyGreen = $HealthBar/Foreground.color
+var rng
 
 func _ready():
+	if $Button:
+		await get_tree().create_timer(4.0).timeout
+		$Button.disabled = false
+	rng = RandomNumberGenerator.new()
 	GameManager.set_player(self)
 
 func _physics_process(delta):
@@ -151,10 +157,27 @@ func takeDamage(damage):
 	else:
 		queue_free()
 		
-
-
+		
 func _on_button_button_down() -> void:
+	$Button.release_focus()
+	var bossInst
+	if get_tree().get_nodes_in_group("Boss") != []:
+		bossInst = get_tree().get_nodes_in_group("Boss")[0]
+	var chickenSpawn = get_tree().root.get_node("Level 4/ChickenSpawn")
+	var chickenBoundsMin = Vector3(chickenSpawn.position.x - chickenSpawn.size.x/2,0,chickenSpawn.position.z - chickenSpawn.size.z/2)
+	var chickenBoundsMax = Vector3(chickenSpawn.position.x + chickenSpawn.size.x/2,0,chickenSpawn.position.z + chickenSpawn.size.z/2)
 	print("SPAWN CHICKENS")
+	for i in range(15):
+		rng.randomize()
+		var chickenInst = finalChickens.instantiate()
+		get_tree().root.add_child(chickenInst)
+		chickenInst.position.x = randf_range(chickenBoundsMin.x,chickenBoundsMax.x)
+		chickenInst.position.y = -1.285
+		chickenInst.position.z = randf_range(chickenBoundsMin.z,chickenBoundsMax.z)
+		if bossInst:
+			chickenInst.targetCharacter = bossInst
+		else:
+			chickenInst.targetCharacter = self
 	$Button.disabled = true
 	await get_tree().create_timer(3.0).timeout
 	$Button.disabled = false

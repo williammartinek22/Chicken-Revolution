@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bluldnvxtyocv" path="res://PauseMenu.tscn" id="4_ac1d8"]
 [ext_resource type="PackedScene" uid="uid://b5lrse0be7867" path="res://ui.tscn" id="4_ifscs"]
 [ext_resource type="Script" path="res://chicken_count_label.gd" id="5_itc07"]
-[ext_resource type="FontFile" uid="uid://el22pfo7qjtq" path="res://game/Font/Action Comics Black.ttf" id="7_xky0d"]
+[ext_resource type="FontFile" uid="uid://dtdd7fpocqj8p" path="res://game/Font/Bungee-Regular.ttf" id="6_60ky4"]
 [ext_resource type="PackedScene" uid="uid://b7gaj7rarnyas" path="res://coop.tscn" id="8_cauox"]
 [ext_resource type="ArrayMesh" uid="uid://dahktbet1ci8j" path="res://game/BigGreenTree/BigGreenTree.obj" id="8_drjph"]
 [ext_resource type="MeshLibrary" uid="uid://brd8t7ayvqcrx" path="res://tiles.tres" id="8_h7qbl"]
@@ -109,7 +109,7 @@ shape = SubResource("BoxShape3D_1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.697913, 1.19148, 1.27752)
 billboard = 1
 text = "Chickens saved: 0/10"
-font = ExtResource("7_xky0d")
+font = ExtResource("6_60ky4")
 font_size = 48
 script = ExtResource("5_itc07")
 
@@ -125,7 +125,7 @@ mesh = SubResource("BoxMesh_1")
 [node name="Label3D" type="Label3D" parent="Level1Button"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0828295, 0.737135, -0.0246077)
 text = "Level 1"
-font = ExtResource("7_xky0d")
+font = ExtResource("6_60ky4")
 font_size = 50
 
 [node name="Level2Button" type="Area3D" parent="."]
@@ -140,7 +140,7 @@ mesh = SubResource("BoxMesh_2")
 [node name="Label3D" type="Label3D" parent="Level2Button"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0828295, 0.737135, -0.0246077)
 text = "Level 2"
-font = ExtResource("7_xky0d")
+font = ExtResource("6_60ky4")
 font_size = 50
 
 [node name="Level3Button" type="Area3D" parent="."]
@@ -155,7 +155,7 @@ mesh = SubResource("BoxMesh_1")
 [node name="Label3D" type="Label3D" parent="Level3Button"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246077, 0.737135, -0.0828295)
 text = "Level 3"
-font = ExtResource("7_xky0d")
+font = ExtResource("6_60ky4")
 font_size = 50
 
 [node name="Level4Button" type="Area3D" parent="."]
@@ -170,7 +170,7 @@ mesh = SubResource("BoxMesh_2")
 [node name="Label3D" type="Label3D" parent="Level4Button"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246077, 0.737135, -0.0828295)
 text = "Level 4"
-font = ExtResource("7_xky0d")
+font = ExtResource("6_60ky4")
 font_size = 50
 
 [node name="Grass" type="Node3D" parent="."]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5lrse0be7867"]
 
 [ext_resource type="Script" path="res://FPS_counter.gd" id="1_htuep"]
-[ext_resource type="FontFile" uid="uid://el22pfo7qjtq" path="res://game/Font/Action Comics Black.ttf" id="2_spm45"]
+[ext_resource type="FontFile" uid="uid://dtdd7fpocqj8p" path="res://game/Font/Bungee-Regular.ttf" id="2_mgg4w"]
 [ext_resource type="Script" path="res://chicken_count.gd" id="2_xmyfs"]
 
 [sub_resource type="Theme" id="Theme_26lv1"]
-default_font = ExtResource("2_spm45")
+default_font = ExtResource("2_mgg4w")
 default_font_size = 32
 
 [node name="UI" type="Control"]
@@ -33,10 +33,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 760.0
-offset_top = -18.0
-offset_right = 1113.0
-offset_bottom = 128.0
+offset_left = 830.0
+offset_top = -40.0
+offset_right = 1183.0
+offset_bottom = 106.0
 grow_horizontal = 0
 theme = SubResource("Theme_26lv1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

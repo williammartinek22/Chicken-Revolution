@@ -7,3 +7,8 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
+
+func _ready():
+	if get_tree().get_current_scene().name == "Level 4":
+		BackgroundMusic.stream = load("res://game/Music/chickenrevolution_maintheme_01.mp3")
+		BackgroundMusic.play()
