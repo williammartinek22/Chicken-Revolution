@@ -53,16 +53,20 @@ func _on_level_4_button_input_event(camera: Node, event: InputEvent, event_posit
 
 func _on_level_1_button_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		get_tree().change_scene_to_file("res://test.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://test.tscn")
+		#get_tree().change_scene_to_file("res://test.tscn")
 
 func _on_level_2_button_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		get_tree().change_scene_to_file("res://level_2.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://level_2.tscn")
+		#get_tree().change_scene_to_file("res://level_2.tscn")
 
 func _on_level_3_button_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		get_tree().change_scene_to_file("res://level_3.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://level_3.tscn")
+		#get_tree().change_scene_to_file("res://level_3.tscn")
 
 func _on_level_4_button_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		get_tree().change_scene_to_file("res://level_4.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://level_4.tscn")
+		#get_tree().change_scene_to_file("res://level_4.tscn")

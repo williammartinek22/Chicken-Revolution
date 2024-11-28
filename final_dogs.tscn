@@ -7,8 +7,8 @@
 [ext_resource type="ArrayMesh" uid="uid://d6ofn8yvwe4c" path="res://game/OtherCharacters/WhiteDog/WhiteDog.obj" id="5_k5dd6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljwbd"]
-radius = 0.799758
-height = 1.59952
+radius = 0.476127
+height = 1.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1x37s"]
 height = 1.04711

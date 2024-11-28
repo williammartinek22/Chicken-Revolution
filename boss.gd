@@ -9,7 +9,7 @@ var coolDown = 3.0
 var canAttack = true
 var damage = 1
 @export_enum("Enemy1","Enemy2","Enemy3") var EnemyVariant: int
-@export var totalHealth = 1#20
+@export var totalHealth = 20
 var health = totalHealth
 var key = "res://key.tscn"
 var finalDogs = load("res://final_dogs.tscn")
@@ -123,7 +123,7 @@ func summon_dogs():
 	var playerInst
 	if get_tree().get_nodes_in_group("Player") != []:
 		playerInst = get_tree().get_nodes_in_group("Player")[0]
-	var dogSpawn = get_tree().root.get_node("Level 4/NavigationRegion3D/DogSpawn")
+	var dogSpawn = get_tree().root.get_node("Level 4/DogSpawn")
 	var dogBoundsMin = Vector3(dogSpawn.position.x - dogSpawn.size.x/2,0,dogSpawn.position.z - dogSpawn.size.z/2)
 	var dogBoundsMax = Vector3(dogSpawn.position.x + dogSpawn.size.x/2,0,dogSpawn.position.z + dogSpawn.size.z/2)
 	print("SUMMONING DOGS")
@@ -132,7 +132,7 @@ func summon_dogs():
 		var dogInst = finalDogs.instantiate()
 		get_tree().get_current_scene().add_child(dogInst)
 		dogInst.position.x = randf_range(dogBoundsMin.x,dogBoundsMax.x)
-		dogInst.position.y = -1.285
+		dogInst.position.y = 0#-1.285
 		dogInst.position.z = randf_range(dogBoundsMin.z,dogBoundsMax.z)
 		if get_tree().get_nodes_in_group("NPC").size() >= i + 1:
 			dogInst.targetCharacter = get_tree().get_nodes_in_group("NPC")[i]
@@ -140,6 +140,6 @@ func summon_dogs():
 			dogInst.targetCharacter = playerInst
 		else:
 			dogInst.targetCharacter = null
-		dogInst.jump()
-	await get_tree().create_timer(5.0).timeout
+		#dogInst.jump()
+	await get_tree().create_timer(6.0).timeout
 	summon_dogs()
