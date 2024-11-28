@@ -32,9 +32,6 @@ func _ready():
 	GameManager.set_player(self)
 
 func _physics_process(delta):
-	#if get_tree().paused:
-		#return
-		
 	# pull player to the ground, use jump buffer, and trigger dust effect on landing
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -170,11 +167,13 @@ func _on_button_button_down() -> void:
 	for i in range(15):
 		rng.randomize()
 		var chickenInst = finalChickens.instantiate()
-		get_tree().root.add_child(chickenInst)
+		get_tree().get_current_scene().add_child(chickenInst)
 		chickenInst.position.x = randf_range(chickenBoundsMin.x,chickenBoundsMax.x)
 		chickenInst.position.y = -1.285
 		chickenInst.position.z = randf_range(chickenBoundsMin.z,chickenBoundsMax.z)
-		if bossInst:
+		if get_tree().get_nodes_in_group("Enemy").size() >= i + 1:
+			chickenInst.targetCharacter = get_tree().get_nodes_in_group("Enemy")[i]
+		elif bossInst:
 			chickenInst.targetCharacter = bossInst
 		else:
 			chickenInst.targetCharacter = self

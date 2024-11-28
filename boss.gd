@@ -12,6 +12,7 @@ var damage = 1
 @export var totalHealth = 20
 var health = totalHealth
 var key = "res://key.tscn"
+var finalDogs = load("res://final_dogs.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -35,6 +36,9 @@ func _ready():
 			damage = 2
 		2:
 			$Enemy3.visible = true
+			
+	await get_tree().create_timer(6.0).timeout
+	summon_dogs()
 
 func _physics_process(delta):
 	if targetCharacter:
@@ -49,7 +53,7 @@ func _physics_process(delta):
 	if targetCharacter:
 		updateTargetLocation(targetCharacter.position)
 	
-	if position.distance_to(agent.get_next_path_position()) > 0.5:
+	if position.distance_to(agent.get_next_path_position()) > 0.5 and $AudioStreamPlayer4.playing == false:
 		var current_location = global_transform.origin
 		var next_location = agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * SPEED
@@ -64,7 +68,7 @@ func _physics_process(delta):
 		
 	if collide:
 		var collider = collide.get_collider()
-		if collider.is_in_group("Player") and canAttack:
+		if collider.is_in_group("Player") and canAttack and $CollisionShape3D.disabled != true:
 			canAttack = false
 			$AudioStreamPlayer2.play()
 			collider.takeDamage(damage)
@@ -72,8 +76,9 @@ func _physics_process(delta):
 			canAttack = true
 			
 	if !canAttack:
-		targetCharacter = null
-		updateTargetLocation(target)
+		pass
+		#targetCharacter = null
+		#updateTargetLocation(target)
 	
 func updateTargetLocation(targetVar):
 	agent.set_target_position(targetVar)
@@ -98,15 +103,41 @@ func take_damage():
 	health -= 1
 	var healthPercentage = float(health)/totalHealth
 	$Control/enemyForeground.size.x = $Control/enemyBackground.size.x * (healthPercentage)
-	if health <= 0:
+	if health <= 0 and $CollisionShape3D.disabled != true:
 		die()
 		
 func die():
+	$CollisionShape3D.disabled = true
+	$AudioStreamPlayer4.play()
+	while scale.x > 0:
+		scale = scale - Vector3(0.01,0.01,0.01)
+		await get_tree().create_timer(0.005).timeout
+	await $AudioStreamPlayer4.finished
 	var keyInst = load(key).instantiate()
 	keyInst.position = position
-	$CollisionShape3D.disabled = true
 	get_tree().root.add_child(keyInst)
-	$AudioStreamPlayer4.play()
-	visible = false
-	await $AudioStreamPlayer4.finished
 	queue_free()
+
+func summon_dogs():
+	var playerInst
+	if get_tree().get_nodes_in_group("Player") != []:
+		playerInst = get_tree().get_nodes_in_group("Player")[0]
+	var dogSpawn = get_tree().root.get_node("Level 4/DogSpawn")
+	var dogBoundsMin = Vector3(dogSpawn.position.x - dogSpawn.size.x/2,0,dogSpawn.position.z - dogSpawn.size.z/2)
+	var dogBoundsMax = Vector3(dogSpawn.position.x + dogSpawn.size.x/2,0,dogSpawn.position.z + dogSpawn.size.z/2)
+	print("SUMMONING DOGS")
+	for i in range(10):
+		rng.randomize()
+		var dogInst = finalDogs.instantiate()
+		get_tree().get_current_scene().add_child(dogInst)
+		dogInst.position.x = randf_range(dogBoundsMin.x,dogBoundsMax.x)
+		dogInst.position.z = randf_range(dogBoundsMin.z,dogBoundsMax.z)
+		if get_tree().get_nodes_in_group("NPC").size() >= i + 1:
+			dogInst.targetCharacter = get_tree().get_nodes_in_group("NPC")[i]
+		elif playerInst:
+			dogInst.targetCharacter = playerInst
+		else:
+			dogInst.targetCharacter = null
+		dogInst.jump()
+	await get_tree().create_timer(5.0).timeout
+	summon_dogs()

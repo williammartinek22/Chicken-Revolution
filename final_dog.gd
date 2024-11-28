@@ -1,14 +1,15 @@
 extends CharacterBody3D
 
 @onready var agent = $NavigationAgent3D
-var SPEED = 2
+var SPEED = 3.5
 var target: Vector3
 var targetCharacter
 var roam = false
 var coolDown = 3.0
 var canAttack = true
+@export_enum("BrownDog","WhiteDog") var EnemyVariant: int
 var damage = 1
-@export_enum("Enemy1","Enemy2","Enemy3") var EnemyVariant: int
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var rng = RandomNumberGenerator.new()
 
@@ -20,23 +21,28 @@ func _ready():
 	else:
 		target = position
 		
-	$Enemy1.visible = false
-	$Enemy2.visible = false
-	$Enemy3.visible = false
-			
+	rng.randomize()
+	EnemyVariant = randi_range(0,1)
+		
+	$BrownDog.visible = false
+	$WhiteDog.visible = false
+	
 	match EnemyVariant:
 		0:
-			$Enemy1.visible = true
+			$BrownDog.visible = true
 		1:
-			$Enemy2.visible = true
-			damage = 2
-		2:
-			$Enemy3.visible = true
+			$WhiteDog.visible = true
+			
+	await get_tree().create_timer(24.0).timeout
+	queue_free()
 
 func _physics_process(delta):
-	if targetCharacter:
+	if velocity.y > 0:
+		velocity.y -= gravity * delta * 10
+	
+	if targetCharacter and is_instance_valid(targetCharacter):
 		look_at(targetCharacter.position)# + Vector3.FORWARD)
-	elif position != target:
+	elif !global_transform.origin.is_equal_approx(target):
 		look_at(target)
 	rotation.x = 0
 	rotation.z = 0
@@ -50,14 +56,16 @@ func _physics_process(delta):
 		var current_location = global_transform.origin
 		var next_location = agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * SPEED
-		target.y = position.y
+		#new_velocity.y = velocity.y
+		#target.y = position.y
 		velocity = new_velocity
-		velocity.y = 0
 		collide = move_and_collide(velocity * delta)
+		#velocity.y = 0
 	elif roam:
 		rng.randomize()
 		target = Vector3(randf_range(-45,45),0,randf_range(-45,45))
 		updateTargetLocation(target)
+		
 		
 	if collide:
 		var collider = collide.get_collider()
@@ -67,6 +75,9 @@ func _physics_process(delta):
 			collider.takeDamage(damage)
 			await get_tree().create_timer(coolDown).timeout
 			canAttack = true
+		elif collider.is_in_group("NPC"):
+			collider.queue_free()
+			queue_free()
 			
 	if !canAttack:
 		targetCharacter = null
@@ -78,10 +89,7 @@ func updateTargetLocation(targetVar):
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("Player"):
-		if EnemyVariant == 1:
-			$AudioStreamPlayer3.play()
-		else:
-			$AudioStreamPlayer.play()
+		$AudioStreamPlayer.play()
 		targetCharacter = body
 		updateTargetLocation(targetCharacter.position)
 
@@ -90,3 +98,6 @@ func _on_area_3d_body_exited(body):
 		canAttack = true
 		targetCharacter = null
 		updateTargetLocation(target)
+		
+func jump():
+	velocity.y = 20

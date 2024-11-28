@@ -18,6 +18,10 @@ func _ready():
 	
 
 func _physics_process(delta):
+	if !$AudioStreamPlayer2.playing:
+		$AudioStreamPlayer2.pitch_scale = randf_range(0.75,1.25)
+		$AudioStreamPlayer2.play()
+	
 	if targetCharacter and is_instance_valid(targetCharacter):
 		agent.set_target_position(targetCharacter.global_position)
 		if jumping == false:# and abs(position.distance_to(agent.get_next_path_position())) > scale.x * 1.2:
@@ -33,6 +37,9 @@ func _physics_process(delta):
 				if collider.is_in_group("Boss"):
 					collider.take_damage()
 					queue_free()
+				if collider.is_in_group("Enemy"):
+					collider.queue_free()
+					queue_free()
 					
 		elif jumping == true:
 			position = position.lerp(targetPosition, delta)
@@ -42,9 +49,10 @@ func _physics_process(delta):
 			if position.distance_to(targetPosition) < 1:
 				jumping = false
 		if has_node("Node3D") and targetCharacter:
-			$Node3D.look_at(targetCharacter.global_position)
-			$Node3D.rotation.x = 0
-			$Node3D.rotation.z = 0
+			if targetCharacter.global_position != position:
+				$Node3D.look_at(targetCharacter.global_position)
+				$Node3D.rotation.x = 0
+				$Node3D.rotation.z = 0
 			
 	if !targetCharacter and get_tree().get_nodes_in_group("Player") != []:
 		targetCharacter = get_tree().get_nodes_in_group("Player")[0]
