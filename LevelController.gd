@@ -10,5 +10,5 @@ func _process(_delta: float) -> void:
 
 func _ready():
 	if get_tree().get_current_scene().name == "Level 4":
-		BackgroundMusic.stream = load("res://game/Music/chickenrevolution_maintheme_01.mp3")
+		BackgroundMusic.stream = load("res://game/Music/temporary boss music.mp3")
 		BackgroundMusic.play()

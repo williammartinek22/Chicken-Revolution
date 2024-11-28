@@ -20,6 +20,8 @@ wall_min_slide_angle = 3.14159
 script = ExtResource("1_3tqni")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 21.21
+path_postprocessing = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000441909, 0.586781, -0.000435948)

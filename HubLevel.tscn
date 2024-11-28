@@ -104,6 +104,7 @@ visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enclosure"]
 shape = SubResource("BoxShape3D_1")
+disabled = true
 
 [node name="ChickenCountLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.697913, 1.19148, 1.27752)
@@ -327,7 +328,11 @@ transform = Transform3D(-0.604849, 0, -0.79634, 0, 1, 0, 0.79634, 0, -0.604849, 
 [node name="Coop2" parent="." instance=ExtResource("8_cauox")]
 transform = Transform3D(0.676876, 0, -0.736097, 0, 1, 0, 0.736097, 0, 0.676876, -13.5098, -0.432658, -15.2221)
 
+[connection signal="body_entered" from="Level1Button" to="." method="_on_level_1_button_body_entered"]
 [connection signal="input_event" from="Level1Button" to="." method="_on_level_1_button_input_event"]
+[connection signal="body_entered" from="Level2Button" to="." method="_on_level_2_button_body_entered"]
 [connection signal="input_event" from="Level2Button" to="." method="_on_level_2_button_input_event"]
+[connection signal="body_entered" from="Level3Button" to="." method="_on_level_3_button_body_entered"]
 [connection signal="input_event" from="Level3Button" to="." method="_on_level_3_button_input_event"]
+[connection signal="body_entered" from="Level4Button" to="." method="_on_level_4_button_body_entered"]
 [connection signal="input_event" from="Level4Button" to="." method="_on_level_4_button_input_event"]

@@ -25,7 +25,7 @@ var health = totalHealth
 var rng
 
 func _ready():
-	if $Button:
+	if has_node("Button"):
 		await get_tree().create_timer(4.0).timeout
 		$Button.disabled = false
 	rng = RandomNumberGenerator.new()

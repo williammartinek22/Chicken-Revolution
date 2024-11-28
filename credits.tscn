@@ -1,4 +1,44 @@
-[gd_scene format=3 uid="uid://bc5aidtdfrx1j"]
+[gd_scene load_steps=6 format=3 uid="uid://bc5aidtdfrx1j"]
+
+[ext_resource type="Script" path="res://credits.gd" id="1_kdf26"]
+[ext_resource type="Texture2D" uid="uid://dfop2tww5mqmi" path="res://game/UIElements/Home-Screen.png" id="2_u3t1u"]
+
+[sub_resource type="Animation" id="Animation_e60hq"]
+resource_name = "CreditScroll"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CreditScroll:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.96667, 10, 21.5, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 2), Vector2(0, 2), Vector2(0, -687), Vector2(0, -687), Vector2(0, -1370)]
+}
+
+[sub_resource type="Animation" id="Animation_thfyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CreditScroll:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sic0u"]
+_data = {
+"CreditScroll": SubResource("Animation_e60hq"),
+"RESET": SubResource("Animation_thfyv")
+}
 
 [node name="Credits?" type="Control"]
 layout_mode = 3
@@ -7,11 +47,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kdf26")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 374.0
-offset_top = 249.0
-offset_right = 783.0
-offset_bottom = 385.0
-text = "Credits go here"
+offset_right = 1168.0
+offset_bottom = 657.0
+color = Color(0, 0, 0, 1)
+
+[node name="CreditScroll" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 1154.0
+offset_bottom = 650.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditScroll"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 687.0
+offset_right = 1135.0
+offset_bottom = 1475.0
+text = "																															Team:
+																							Programmers: Matías, Jasfo, Wdavemart
+																							Voxel Art: Laiszmf
+																							Music and Sounds: Hypedigi
+Sound Effects:
+Bloop 2 (floraphonic): https://pixabay.com/sound-effects/bloop-2-186531/
+Pigeons flying (Pixabay): https://pixabay.com/sound-effects/pigeons-flying-6351/
+Wing Flap 1 (Pixabay): https://pixabay.com/sound-effects/wing-flap-1-6434/
+power up (Type 1): https://pixabay.com/sound-effects/power-up-type-1-230548/
+Egg cracking (Pixabay): https://pixabay.com/sound-effects/egg-cracking-6844/
+047876_Chicken clucking (Pixabay): https://pixabay.com/sound-effects/047876-chicken-clucking-68610/
+surprised huh hmm hwaah comic (Pixabay): https://pixabay.com/sound-effects/surprised-huh-hmm-hwaah-comic-36295/
+Chicken Single Alarm Call (Pixabay): https://pixabay.com/sound-effects/chicken-single-alarm-call-6056/
+dog bark (u_5wgfa0ekjt): https://pixabay.com/sound-effects/dog-bark-179915/
+Key get (Mendenhall02 (Freesound)): https://pixabay.com/sound-effects/key-get-39925/
+Squish Pop (PixelCrusher): https://pixabay.com/sound-effects/squish-pop-256410/
+dorm door opening (pagancow (Freesound)): https://pixabay.com/sound-effects/dorm-door-opening-6038/
+Male Extreme Scream (Universfield): https://pixabay.com/sound-effects/male-extreme-scream-123078/
+
+Music:
+chickenrevolution_maintheme_01.mp3 - hypedigi
+Boss Battle 6 Metal V1.wav (nene): https://opengameart.org/content/boss-battle-6-metal
+A New Day's Hurry (One Man Symphony): https://onemansymphony.bandcamp.com/album/a-new-days-hurry-free
+
+Shaders and Textures:
+PSX Style Water Surface (GEG-fairbear8974): https://godotshaders.com/shader/psx-style-water-surface-pixelation-waves-scrolling-textures/
+Clear sea water (the3rdSequence): https://www.the3rdsequence.com/texturedb/texture/44/clear+sea+water/
+	Licensed under Creative Commons Attribution 4.0 International License: https://creativecommons.org/licenses/by/4.0/
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditScroll"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 1653.0
+offset_right = 1059.0
+offset_bottom = 2055.0
+theme_override_font_sizes/normal_font_size = 39
+text = "Thank you for playing!"
+
+[node name="Home-screen" type="Sprite2D" parent="CreditScroll"]
+texture_filter = 3
+position = Vector2(616, 306)
+scale = Vector2(0.711923, 0.588083)
+texture = ExtResource("2_u3t1u")
+region_enabled = true
+region_rect = Rect2(542.589, 56.682, 897.591, 386.027)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sic0u")
+}

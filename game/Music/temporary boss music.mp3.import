@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0a84e4mn5khl"
+path="res://.godot/imported/temporary boss music.mp3-491340f21f4a9d18a805e9621d4c322a.mp3str"
+
+[deps]
+
+source_file="res://game/Music/temporary boss music.mp3"
+dest_files=["res://.godot/imported/temporary boss music.mp3-491340f21f4a9d18a805e9621d4c322a.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -80,8 +80,9 @@ func _physics_process(delta):
 			queue_free()
 			
 	if !canAttack:
-		targetCharacter = null
-		updateTargetLocation(target)
+		pass
+		#targetCharacter = null
+		#updateTargetLocation(target)
 	
 func updateTargetLocation(targetVar):
 	agent.set_target_position(targetVar)
