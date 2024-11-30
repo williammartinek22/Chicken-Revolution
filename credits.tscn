@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc5aidtdfrx1j"]
+[gd_scene load_steps=7 format=3 uid="uid://bc5aidtdfrx1j"]
 
 [ext_resource type="Script" path="res://credits.gd" id="1_kdf26"]
 [ext_resource type="Texture2D" uid="uid://dfop2tww5mqmi" path="res://game/UIElements/Home-Screen.png" id="2_u3t1u"]
+[ext_resource type="Texture2D" uid="uid://30jr25w2scw5" path="res://game/CreditsPictures/PXL_20240823_205453719.jpg" id="3_pxe68"]
 
 [sub_resource type="Animation" id="Animation_e60hq"]
 resource_name = "CreditScroll"
@@ -52,7 +53,7 @@ script = ExtResource("1_kdf26")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1168.0
-offset_bottom = 657.0
+offset_bottom = 2606.0
 color = Color(0, 0, 0, 1)
 
 [node name="CreditScroll" type="Control" parent="."]
@@ -61,12 +62,19 @@ offset_top = 2.0
 offset_right = 1154.0
 offset_bottom = 650.0
 
+[node name="Home-screen" type="Sprite2D" parent="CreditScroll"]
+texture_filter = 3
+position = Vector2(616, 306)
+scale = Vector2(0.711923, 0.588083)
+texture = ExtResource("2_u3t1u")
+region_enabled = true
+region_rect = Rect2(542.589, 56.682, 897.591, 386.027)
+
 [node name="RichTextLabel" type="RichTextLabel" parent="CreditScroll"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 687.0
-offset_right = 1135.0
-offset_bottom = 1475.0
+layout_mode = 2
+offset_top = 647.0
+offset_right = 555.0
+offset_bottom = 1296.0
 theme_override_font_sizes/normal_font_size = 15
 text = "																															Team:
 																							Programmers: Matías, Jasfo, Wdavemart
@@ -100,21 +108,19 @@ Clear sea water (the3rdSequence): https://www.the3rdsequence.com/texturedb/textu
 "
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CreditScroll"]
-layout_mode = 0
-offset_left = 373.0
-offset_top = 1653.0
-offset_right = 1059.0
-offset_bottom = 2055.0
+layout_mode = 2
+offset_left = 336.0
+offset_top = 1540.0
+offset_right = 819.0
+offset_bottom = 1639.0
 theme_override_font_sizes/normal_font_size = 39
 text = "Thank you for playing!"
 
-[node name="Home-screen" type="Sprite2D" parent="CreditScroll"]
-texture_filter = 3
-position = Vector2(616, 306)
-scale = Vector2(0.711923, 0.588083)
-texture = ExtResource("2_u3t1u")
-region_enabled = true
-region_rect = Rect2(542.589, 56.682, 897.591, 386.027)
+[node name="Pxl20240823205453719" type="Sprite2D" parent="CreditScroll"]
+texture_filter = 1
+position = Vector2(907, 949)
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("3_pxe68")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
