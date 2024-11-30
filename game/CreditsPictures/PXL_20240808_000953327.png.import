@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctagmo060j3q6"
-path="res://.godot/imported/PXL_20240808_000953327.jpg-76f1d4bd3e3774db079afecc05c28ca1.ctex"
+uid="uid://cgwck1nr5ajt2"
+path="res://.godot/imported/PXL_20240808_000953327.png-9ec6f874330642ee33e6c23af77edd5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/CreditsPictures/PXL_20240808_000953327.jpg"
-dest_files=["res://.godot/imported/PXL_20240808_000953327.jpg-76f1d4bd3e3774db079afecc05c28ca1.ctex"]
+source_file="res://game/CreditsPictures/PXL_20240808_000953327.png"
+dest_files=["res://.godot/imported/PXL_20240808_000953327.png-9ec6f874330642ee33e6c23af77edd5e.ctex"]
 
 [params]
 

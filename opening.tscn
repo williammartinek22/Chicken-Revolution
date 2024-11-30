@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://sb4p6c8faysr" path="res://OptionsMenu.tscn" id="2_amk8w"]
 [ext_resource type="VideoStream" path="res://game/opening/DRAFT-01.ogv" id="3_agmh1"]
 [ext_resource type="Texture2D" uid="uid://dhlwruw4lcwc2" path="res://GitHubGameOffLogo.bmp" id="3_c3s3s"]
-[ext_resource type="VideoStream" path="res://game/opening/ChickenRotate.ogv" id="4_sd40p"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_dh6wt"]
+file = "res://game/opening/ChickenRotate.ogv"
 
 [node name="Opening" type="Control"]
 layout_mode = 3
@@ -55,7 +57,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-stream = ExtResource("4_sd40p")
+stream = SubResource("VideoStreamTheora_dh6wt")
 autoplay = true
 expand = true
 loop = true
