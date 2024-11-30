@@ -9,7 +9,7 @@ var coolDown = 3.0
 var canAttack = true
 var damage = 1
 @export_enum("Enemy1","Enemy2","Enemy3") var EnemyVariant: int
-@export var totalHealth = 20
+@export var totalHealth = 40
 var health = totalHealth
 var key = "res://key.tscn"
 var finalDogs = load("res://final_dogs.tscn")
@@ -107,7 +107,8 @@ func take_damage():
 		die()
 		
 func die():
-	$CollisionShape3D.disabled = true
+	$CollisionShape3D.set_deferred("disabled", true)
+	#$CollisionShape3D.disabled = true
 	$AudioStreamPlayer4.play()
 	while scale.x > 0:
 		scale = scale - Vector3(0.01,0.01,0.01)
@@ -143,3 +144,11 @@ func summon_dogs():
 		#dogInst.jump()
 	await get_tree().create_timer(6.0).timeout
 	summon_dogs()
+
+
+func _on_laser_timer_timeout() -> void:
+	$Laser.visible = true
+	$Laser.noHit = false
+	await get_tree().create_timer(1.0).timeout
+	$Laser.noHit = true
+	$Laser.visible = false

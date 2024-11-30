@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnpjbk7xltkyr"]
+
+[ext_resource type="Script" path="res://opening.gd" id="1_oug21"]
+[ext_resource type="PackedScene" uid="uid://sb4p6c8faysr" path="res://OptionsMenu.tscn" id="2_amk8w"]
+[ext_resource type="Texture2D" uid="uid://dhlwruw4lcwc2" path="res://GitHubGameOffLogo.bmp" id="3_c3s3s"]
+
+[node name="Opening" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oug21")
+
+[node name="OptionsMenu" parent="." instance=ExtResource("2_amk8w")]
+visible = false
+
+[node name="SkipButtonTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="OpeningControl" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OpeningControl"]
+layout_mode = 0
+offset_left = 553.0
+offset_top = 311.0
+offset_right = 664.0
+offset_bottom = 337.0
+text = "Opening Here"
+
+[node name="GitHubGameOffLogo2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GitHubGameOffLogo2"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0980392, 0.0117647, 0.262745, 1)
+
+[node name="GitHubGameOffLogo" type="Sprite2D" parent="GitHubGameOffLogo2"]
+position = Vector2(584, 311)
+texture = ExtResource("3_c3s3s")
+
+[node name="SkipButton" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SkipButton"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1046.0
+offset_top = 586.0
+offset_right = 1132.0
+offset_bottom = 662.0
+theme_override_font_sizes/normal_font_size = 12
+text = "    Hold any button to skip"
+
+[node name="ProgressBar" type="ProgressBar" parent="SkipButton"]
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 621.0
+offset_right = 1139.0
+offset_bottom = 638.0
+show_percentage = false
+
+[connection signal="timeout" from="SkipButtonTimer" to="." method="_on_skip_button_timer_timeout"]

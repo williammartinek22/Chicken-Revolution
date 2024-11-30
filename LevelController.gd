@@ -5,8 +5,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
-	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+	#if Input.is_action_just_pressed("exit"):
+		#get_tree().quit()
 
 func _ready():
 	if get_tree().get_current_scene().name == "Level 4":

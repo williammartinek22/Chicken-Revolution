@@ -1,14 +1,30 @@
-[gd_scene load_steps=12 format=3 uid="uid://lmanumoq7ckt"]
+[gd_scene load_steps=17 format=3 uid="uid://lmanumoq7ckt"]
 
 [ext_resource type="Script" path="res://boss.gd" id="1_3b0ru"]
 [ext_resource type="AudioStream" uid="uid://cbfektgoli3eh" path="res://SFX/huh.mp3" id="2_fgwj1"]
+[ext_resource type="Script" path="res://laser.gd" id="2_mpurv"]
 [ext_resource type="AudioStream" uid="uid://cictcy2akey7y" path="res://SFX/chicken_die.mp3" id="3_5n5au"]
+[ext_resource type="PackedScene" uid="uid://d3rg0asf8qulh" path="res://end_particles.tscn" id="3_36b1o"]
+[ext_resource type="AudioStream" uid="uid://ctgh57i4si6r4" path="res://SFX/laser.mp3" id="4_6iymr"]
 [ext_resource type="AudioStream" uid="uid://bcokwkjfvcm5s" path="res://SFX/hwaah.mp3" id="4_fjv4l"]
 [ext_resource type="ArrayMesh" uid="uid://byfl251kply7l" path="res://game/OtherCharacters/Enemie1/Enemy1.obj" id="5_lh711"]
 [ext_resource type="AudioStream" uid="uid://dsf46ypxdpl58" path="res://SFX/human_scream.mp3" id="5_w8wwu"]
 [ext_resource type="ArrayMesh" uid="uid://dra1tdnyqpmjk" path="res://game/OtherCharacters/Enemy2/Enemy2.obj" id="6_tjr5o"]
 [ext_resource type="ArrayMesh" uid="uid://cigqnggjdbbmt" path="res://game/OtherCharacters/Enemy3/Enemy3.obj" id="7_b0b8w"]
 [ext_resource type="Texture2D" uid="uid://dnyrv5sk6vd4l" path="res://game/UIElements/Health-Bar.png" id="9_nmsmg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_whgjw"]
+flip_faces = true
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bppds"]
+transparency = 1
+albedo_color = Color(0.866667, 0.0745098, 0, 0.839216)
+emission_enabled = true
+emission = Color(0.866667, 0.0745098, 0, 1)
+emission_energy_multiplier = 10.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljwbd"]
 radius = 0.381363
@@ -21,6 +37,29 @@ radius = 34.1461
 [node name="Boss" type="CharacterBody3D" groups=["Boss"]]
 script = ExtResource("1_3b0ru")
 EnemyVariant = 2
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="Laser" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.328405, 0.944537, 0, -0.944537, -0.328405, -0.0101488, 1.3169, -0.756304)
+visible = false
+target_position = Vector3(0, 20, 0)
+script = ExtResource("2_mpurv")
+
+[node name="EndParticles" parent="Laser" instance=ExtResource("3_36b1o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="BeamMesh" type="MeshInstance3D" parent="Laser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00615209, 0)
+mesh = SubResource("CylinderMesh_whgjw")
+surface_material_override/0 = SubResource("StandardMaterial3D_bppds")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Laser"]
+stream = ExtResource("4_6iymr")
+volume_db = -15.929
+pitch_scale = 2.01
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -96,5 +135,6 @@ position = Vector2(944.5, 40.5)
 scale = Vector2(0.538961, 0.758242)
 texture = ExtResource("9_nmsmg")
 
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -11,10 +11,11 @@ key_get.mp3 - Key get (Mendenhall02 (Freesound)): https://pixabay.com/sound-effe
 worm_get.mp3 - Squish Pop (PixelCrusher): https://pixabay.com/sound-effects/squish-pop-256410/
 door_opening.mp3 - dorm door opening (pagancow (Freesound)): https://pixabay.com/sound-effects/dorm-door-opening-6038/
 human_scream.mp3 - Male Extreme Scream (Universfield): https://pixabay.com/sound-effects/male-extreme-scream-123078/
+laser.mp3 - laser-shoot (cyclS (Freesound)): https://pixabay.com/sound-effects/laser-shoot-38126/
 
 chickenrevolution_maintheme_01.mp3 - hypedigi
 temporary boss music.wav - Boss Battle 6 Metal V1.wav (nene): https://opengameart.org/content/boss-battle-6-metal
-credits.mp3 - A New Day's Hurry (One Man Symphony): https://onemansymphony.bandcamp.com/album/a-new-days-hurry-free
+chickenrevolution_loss_o1.mp3 - hypedigi
 
 water.gdshader - PSX Style Water Surface (GEG-fairbear8974): https://godotshaders.com/shader/psx-style-water-surface-pixelation-waves-scrolling-textures/
 water.png - Clear sea water (the3rdSequence): https://www.the3rdsequence.com/texturedb/texture/44/clear+sea+water/

@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	BackgroundMusic.stream = load("res://game/Music/credits.mp3")
+	BackgroundMusic.stream = load("res://game/Music/chickenrevolution_loss_01.mp3")
 	BackgroundMusic.play()
 	
 	await get_tree().create_timer(5.0).timeout

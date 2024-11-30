@@ -125,6 +125,8 @@ func obtain_power_up():
 	eggCooldownVal = EGG_COOLDOWN
 
 func _notification(item):
+	if not is_inside_tree():
+		return
 	if item == NOTIFICATION_PREDELETE and get_tree():
 		$camera_rig/Camera3D.current = true
 		$camera_rig/Camera3D.reparent(get_tree().root)
