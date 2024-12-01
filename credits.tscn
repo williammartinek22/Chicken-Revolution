@@ -312,6 +312,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_y561p")
 
 [node name="Label2" type="Label" parent="CreditScroll"]
+layout_mode = 0
 offset_left = 217.0
 offset_top = 2184.0
 offset_right = 422.0
@@ -320,6 +321,7 @@ theme_override_font_sizes/font_size = 30
 text = "Music:"
 
 [node name="Music Links" type="VBoxContainer" parent="CreditScroll"]
+layout_mode = 0
 offset_left = 95.0
 offset_top = 2242.0
 offset_right = 638.0
@@ -353,6 +355,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_4nkwp")
 
 [node name="Label3" type="Label" parent="CreditScroll"]
+layout_mode = 0
 offset_left = 640.0
 offset_top = 2794.0
 offset_right = 962.0
@@ -361,6 +364,7 @@ theme_override_font_sizes/font_size = 30
 text = "Shaders and Textures:"
 
 [node name="ShaderTexture Links" type="VBoxContainer" parent="CreditScroll"]
+layout_mode = 0
 offset_left = 565.0
 offset_top = 2833.0
 offset_right = 1051.0

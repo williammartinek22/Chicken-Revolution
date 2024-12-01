@@ -63,6 +63,7 @@ expand = true
 loop = true
 
 [node name="Label" type="Label" parent="OpeningIntro"]
+visible = false
 texture_filter = 2
 layout_mode = 0
 offset_left = 176.0
